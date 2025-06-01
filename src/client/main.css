@@ -19,6 +19,11 @@ body {
 	color: var(--text-color);
 }
 
+.header {
+	display: flex;
+	justify-content: center;
+}
+
 .fc-day:hover {
 	background-color: var(--day-hover-bg-color) !important;
 	cursor: pointer;

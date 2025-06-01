@@ -1,11 +1,18 @@
 import { useLoaderData } from "react-router-dom";
 
+import type { TStay } from "@shared/types";
+
 // For initial data fetching to be done via React Router loader before React renders
 export const loader = async () => {
-	const events = [
-		{ title: "Elaine Birthday", date: "2025-06-08" },
-		{ title: "Father's Day", date: "2025-06-15" },
-		{ title: "Chris Birthday", date: "2025-06-18" }
+	// mock event data for now
+	const events: TStay[] = [
+		{
+			id: "3f6c8b2d-9e1b-4a3a-91d6-427d3e0cf59e",
+			title: "Example Stay",
+			description: "A stay at the lake!",
+			start: "2025-06-16",
+			end: "2025-06-21"
+		}
 	];
 	return events;
 };
