@@ -6,7 +6,7 @@ export type TAppContext = null;
 
 export type TReactStateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
 
-export type TStay = {
+export type TEvent = {
 	id: string;
 	title: string;
 	description?: string;

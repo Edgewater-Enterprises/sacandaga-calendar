@@ -13,7 +13,10 @@ export const Calendar = () => {
 			initialView="dayGridMonth"
 			events={events}
 			dateClick={date => console.log(date)}
-			eventClick={event => console.log(event)}
+			eventClick={({ event: { id } }) => {
+				const event = events.find(e => e.id === id);
+				console.log(event);
+			}}
 		/>
 	);
 };

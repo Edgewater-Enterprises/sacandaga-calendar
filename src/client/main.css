@@ -1,9 +1,8 @@
 :root {
 	--bg-color: #14151a;
-	--text-color: #ffffff;
-	--button-text: #000000;
 	--day-hover-bg-color: #181920;
 	--event-hover-bg-color: #2769aa;
+	--text-color: #ffffff;
 }
 
 * {

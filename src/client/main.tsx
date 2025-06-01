@@ -5,7 +5,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { AppProvider } from "@client/components/AppProvider";
 import { ErrorBoundary } from "@client/components/ErrorBoundary";
-import { Main } from "@client/components/Main";
+import { Home } from "@client/components/Home";
+import { Layout } from "@client/components/Layout";
 import { assertGetElementById, registerServiceWorker } from "@client/helpers/browser";
 import { loader } from "@client/hooks/useApi";
 
@@ -20,15 +21,17 @@ createRoot(root).render(
 	<StrictMode>
 		<QueryClientProvider client={new QueryClient()}>
 			<AppProvider>
-				<RouterProvider
-					router={createBrowserRouter([
-						{
-							errorElement: <ErrorBoundary />,
-							hydrateFallbackElement: <></>,
-							children: [{ index: true, element: <Main />, loader }]
-						}
-					])}
-				/>
+				<Layout>
+					<RouterProvider
+						router={createBrowserRouter([
+							{
+								errorElement: <ErrorBoundary />,
+								hydrateFallbackElement: <></>,
+								children: [{ index: true, element: <Home />, loader }]
+							}
+						])}
+					/>
+				</Layout>
 			</AppProvider>
 		</QueryClientProvider>
 	</StrictMode>
