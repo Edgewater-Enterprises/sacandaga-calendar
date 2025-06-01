@@ -1,10 +1,14 @@
+import { Outlet } from "react-router-dom";
+
 import { Header } from "@client/components/Header";
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+export const Layout = () => {
 	return (
-		<div style={{ display: "flex", flexDirection: "column", rowGap: "1rem", padding: "1rem" }}>
+		<div className="layout">
 			<Header />
-			<main style={{ flex: 1, overflowY: "auto" }}>{children}</main>
+			<main style={{ flex: 1, overflowY: "auto" }}>
+				<Outlet />
+			</main>
 		</div>
 	);
 };

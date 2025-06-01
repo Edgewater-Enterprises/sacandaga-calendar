@@ -21,17 +21,16 @@ createRoot(root).render(
 	<StrictMode>
 		<QueryClientProvider client={new QueryClient()}>
 			<AppProvider>
-				<Layout>
-					<RouterProvider
-						router={createBrowserRouter([
-							{
-								errorElement: <ErrorBoundary />,
-								hydrateFallbackElement: <></>,
-								children: [{ index: true, element: <Home />, loader }]
-							}
-						])}
-					/>
-				</Layout>
+				<RouterProvider
+					router={createBrowserRouter([
+						{
+							element: <Layout />,
+							errorElement: <ErrorBoundary />,
+							hydrateFallbackElement: <></>,
+							children: [{ index: true, element: <Home />, loader }]
+						}
+					])}
+				/>
 			</AppProvider>
 		</QueryClientProvider>
 	</StrictMode>
