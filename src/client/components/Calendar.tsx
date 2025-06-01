@@ -12,7 +12,7 @@ export const Calendar = () => {
 			plugins={[dayGridPlugin, interactionPlugin]}
 			initialView="dayGridMonth"
 			events={events}
-			dateClick={date => console.log(date)}
+			dateClick={date => console.log(date.dateStr)}
 			eventClick={({ event: { id } }) => {
 				const event = events.find(e => e.id === id);
 				console.log(event);

@@ -1,7 +1,6 @@
 :root {
 	--bg-color: #14151a;
-	--day-hover-bg-color: #181920;
-	--event-hover-bg-color: #2769aa;
+	--day-hover-bg-color: #191a20;
 	--text-color: #ffffff;
 }
 
@@ -9,13 +8,22 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: Arial, Helvetica, sans-serif;
 }
 
 html,
 body {
 	background-color: var(--bg-color);
 	color: var(--text-color);
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 1.1rem;
+}
+
+body,
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
 }
 
 .header {
@@ -32,6 +40,13 @@ body {
 	background-color: var(--bg-color) !important;
 }
 
+.fc-event {
+	padding: 0.2rem 0.6rem;
+	text-align: center;
+	border-radius: 1rem;
+	font-weight: 500;
+}
+
 .fc-event:hover {
-	background-color: var(--event-hover-bg-color);
+	outline: 1px solid var(--text-color);
 }
