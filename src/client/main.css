@@ -31,6 +31,22 @@ select {
 	justify-content: center;
 }
 
+.fc-header-toolbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 1rem;
+}
+
+.fc-toolbar-chunk {
+	display: flex;
+}
+
+.fc-button-group {
+	display: flex;
+	column-gap: 5px;
+}
+
 .fc-day:hover {
 	background-color: var(--day-hover-bg-color) !important;
 	cursor: pointer;
