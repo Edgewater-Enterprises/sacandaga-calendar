@@ -25,10 +25,7 @@ createRoot(root).render(
 						{
 							errorElement: <ErrorBoundary />,
 							hydrateFallbackElement: <></>,
-							children: [
-								{ index: true, element: <Main />, loader }
-								// Add more routes here as needed
-							]
+							children: [{ index: true, element: <Main />, loader }]
 						}
 					])}
 				/>

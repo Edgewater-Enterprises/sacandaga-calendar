@@ -1,9 +1,4 @@
-import { treaty } from "@elysiajs/eden";
-
-import type { TApi } from "@server/helpers/api";
-
 export const httpClient = {
-	api: treaty<TApi>(window.location.origin).api,
 	GET: async <T>(url: string, { headers }: { headers?: Headers } = {}) =>
 		request<T>({ url, method: "GET", headers }),
 	POST: async <T>(url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>

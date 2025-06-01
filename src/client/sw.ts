@@ -8,7 +8,7 @@ self.__WB_DISABLE_DEV_LOGS = true;
 
 const manifest = self.__WB_MANIFEST;
 
-const urlsToPrecache = ["/", "/api/hello", ...manifest.map(({ url }) => url)];
+const urlsToPrecache = ["/", ...manifest.map(({ url }) => url)];
 
 const cacheName = "sw-cache";
 

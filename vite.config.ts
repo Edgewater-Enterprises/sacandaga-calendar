@@ -5,30 +5,22 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-import { Config } from "@server/helpers/config";
-import { AppInfo, Env, Path, Route } from "@shared/constants";
+import { AppInfo, Env, Path } from "@shared/constants";
 
 const root = Path.ClientSrc;
 const outDir = Path.Public;
 
-const toCopy = ["icons/", "favicon.ico", "robots.txt"];
+const toCopy = ["favicon.ico", "robots.txt"];
 
 export default defineConfig(({ mode }) => ({
 	root: resolve(root),
 	define: {
-		"import.meta.env.MODE": JSON.stringify(mode),
-		"import.meta.env.PORT": JSON.stringify(Config.PORT)
+		"import.meta.env.MODE": JSON.stringify(mode)
 	},
 	server: {
 		open: true,
 		hmr: true,
 		strictPort: false,
-		proxy: {
-			[Route.Api]: {
-				target: `http://localhost:${Config.PORT}`,
-				changeOrigin: true
-			}
-		},
 		fs: { deny: ["sw.*"] }
 	},
 	build: {
@@ -51,10 +43,7 @@ export default defineConfig(({ mode }) => ({
 					if (entry.name === "sw") return "sw.js";
 					return "assets/[name]~[hash].js";
 				},
-				assetFileNames: asset => {
-					if (asset.names.includes("manifest.json")) return "manifest.json";
-					return "assets/[name]~[hash][extname]";
-				}
+				assetFileNames: "assets/[name]~[hash][extname]"
 			}
 		}
 	},
