@@ -22,21 +22,29 @@ const ErrorDisplay = ({
 }) => {
 	return (
 		<div
-			role="alert"
 			style={{
-				display: "flex",
-				gap: "1rem",
-				flexDirection: "column",
-				justifyContent: "center",
-				alignItems: "center",
-				textAlign: "center",
-				fontSize: "1.2rem",
-				height: "100vh"
+				position: "absolute",
+				top: "50%",
+				left: "50%",
+				transform: "translate(-50%, -50%)"
 			}}
 		>
-			<p>Oops! Something went wrong.</p>
-			<div style={{ color: "red", width: "100%" }}>{error.message}</div>
-			<a href="/">Home</a>
+			<div
+				role="alert"
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+					alignItems: "center",
+					rowGap: "2rem",
+					padding: "1rem",
+					fontSize: "1.2rem"
+				}}
+			>
+				<h1>Error!</h1>
+				<pre style={{ color: "red" }}>{error.message}</pre>
+				<a href="/">Home</a>
+			</div>
 		</div>
 	);
 };

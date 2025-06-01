@@ -1,19 +1,9 @@
 :root {
 	--bg-color: #14151a;
-	--text-color: #fbf0df;
-	--button-bg: #fbf0df;
+	--text-color: #ffffff;
 	--button-text: #000000;
-	--shadow-color: #000000;
-}
-
-@media (prefers-color-scheme: light) {
-	:root {
-		--bg-color: #fbf0df;
-		--text-color: #14151a;
-		--button-bg: #14151a;
-		--button-text: #ffffff;
-		--shadow-color: #a7a497;
-	}
+	--day-hover-bg-color: #181920;
+	--event-hover-bg-color: #2769aa;
 }
 
 * {
@@ -27,4 +17,17 @@ html,
 body {
 	background-color: var(--bg-color);
 	color: var(--text-color);
+}
+
+.fc-day:hover {
+	background-color: var(--day-hover-bg-color) !important;
+	cursor: pointer;
+}
+
+.fc-day:has(.fc-event:hover) {
+	background-color: var(--bg-color) !important;
+}
+
+.fc-event:hover {
+	background-color: var(--event-hover-bg-color);
 }
