@@ -24,9 +24,8 @@ createRoot(root).render(
 					router={createBrowserRouter([
 						{
 							errorElement: <ErrorBoundary />,
-							loader,
 							hydrateFallbackElement: <></>,
-							children: [{ index: true, element: <Main /> }]
+							children: [{ index: true, element: <Main />, loader }]
 						}
 					])}
 				/>
