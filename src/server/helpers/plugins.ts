@@ -24,9 +24,9 @@ export const plugins = new Elysia().use(cors()).use(
 				scriptSrc: ["'self'"],
 				scriptSrcAttr: ["'none'"],
 				scriptSrcElem: ["'self'"],
-				styleSrc: ["'self'"],
-				styleSrcAttr: ["'self'"],
-				styleSrcElem: ["'self'"],
+				styleSrc: ["'self'", "'unsafe-inline'"],
+				styleSrcAttr: ["'self'", "'unsafe-inline'"],
+				styleSrcElem: ["'self'", "'unsafe-inline'"],
 				upgradeInsecureRequests: [],
 				workerSrc: ["'self'"]
 			}
