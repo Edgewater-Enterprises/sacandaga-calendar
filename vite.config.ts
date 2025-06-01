@@ -10,7 +10,7 @@ import { AppInfo, Env, Path } from "@shared/constants";
 const root = Path.ClientSrc;
 const outDir = Path.Public;
 
-const toCopy = ["favicon.ico", "robots.txt"];
+const toCopy = ["icons/", "favicon.ico", "robots.txt"];
 
 export default defineConfig(({ mode }) => ({
 	root: resolve(root),

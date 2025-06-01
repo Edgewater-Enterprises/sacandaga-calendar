@@ -1,6 +1,8 @@
 :root {
 	--bg-color: #14151a;
 	--day-hover-bg-color: #191a20;
+	--today-bg-color: #1a202f;
+	--today-hover-bg-color: #202739;
 	--text-color: #ffffff;
 }
 
@@ -15,7 +17,7 @@ body {
 	background-color: var(--bg-color);
 	color: var(--text-color);
 	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-	font-size: 1.1rem;
+	font-size: 1.05rem;
 }
 
 body,
@@ -47,7 +49,16 @@ select {
 	column-gap: 5px;
 }
 
-.fc-day:hover {
+.fc-day-today {
+	background-color: var(--today-bg-color) !important;
+}
+
+.fc-day-today:hover {
+	background-color: var(--today-hover-bg-color) !important;
+	cursor: pointer;
+}
+
+.fc-day:not(.fc-day-today):hover {
 	background-color: var(--day-hover-bg-color) !important;
 	cursor: pointer;
 }
@@ -65,4 +76,5 @@ select {
 
 .fc-event:hover {
 	outline: 1px solid var(--text-color);
+	cursor: pointer;
 }
