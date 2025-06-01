@@ -1,3 +1,10 @@
+import dayGridPlugin from "@fullcalendar/daygrid";
+import FullCalendar from "@fullcalendar/react";
+
 export const Main = () => {
-	return <h1>Sacandaga</h1>;
+	return (
+		<div style={{ padding: "1rem" }}>
+			<FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
+		</div>
+	);
 };

@@ -21,18 +21,22 @@ const ErrorDisplay = ({
 	error: Error;
 }) => {
 	return (
-		<div role="alert" className="flex-center-col">
+		<div
+			role="alert"
+			style={{
+				display: "flex",
+				gap: "1rem",
+				flexDirection: "column",
+				justifyContent: "center",
+				alignItems: "center",
+				textAlign: "center",
+				fontSize: "1.2rem",
+				height: "100vh"
+			}}
+		>
 			<p>Oops! Something went wrong.</p>
-			<div style={{ color: "red", width: "100%" }}>{error?.message}</div>
-			<button
-				type="button"
-				onClick={() => {
-					sessionStorage.clear();
-					window.open("/", "_self");
-				}}
-			>
-				Home
-			</button>
+			<div style={{ color: "red", width: "100%" }}>{error.message}</div>
+			<a href="/">Home</a>
 		</div>
 	);
 };
