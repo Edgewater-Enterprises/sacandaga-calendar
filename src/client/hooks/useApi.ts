@@ -6,7 +6,6 @@ import type { TAddEvent, TEvent } from "@shared/types";
 
 export const loaderQuery = { queryKey: ["events"], queryFn: fetchEvents };
 
-// For API interactions to be used within React components
 export const useApi = () => {
 	const { data: loadedEvents } = useQuery({ staleTime: 1000, ...loaderQuery });
 	if (!loadedEvents) throw new Error("Failed to load calendar data");

@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import type { TConfig } from "@shared/types";
 import { author, description, license, version } from "package.json";
 

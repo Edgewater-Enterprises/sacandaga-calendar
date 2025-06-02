@@ -1,12 +1,9 @@
-import type { TEvent } from "@shared/types";
+import { eventsSchema } from "@shared/schemas";
 import { QueryClient } from "@tanstack/react-query";
 
-export const queryClient = new QueryClient();
-
 export const fetchEvents = async () => {
-	console.log("Fetching events...");
 	// Using mock data for now
-	const events: TEvent[] = [
+	const unparsedEvents = [
 		{
 			id: "3f6c8b2d-9e1b-4a3a-91d6-427d3e0cf59e",
 			title: "Example Stay",
@@ -21,8 +18,16 @@ export const fetchEvents = async () => {
 			end: "2025-09-02"
 		}
 	];
-	return events;
+	try {
+		const events = eventsSchema.parse(unparsedEvents);
+		return events;
+	} catch (error) {
+		console.error("Failed to validate events:", error);
+		throw new Error("Calendar data does not match expected schema");
+	}
 };
+
+export const queryClient = new QueryClient();
 
 export const httpClient = {
 	GET: async <T>(url: string, { headers }: { headers?: Headers } = {}) =>
