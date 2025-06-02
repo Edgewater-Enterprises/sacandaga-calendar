@@ -14,7 +14,7 @@ export const Calendar = () => {
 			events={events}
 			dateClick={date => console.log(date.dateStr)}
 			eventClick={({ event: { id } }) => {
-				const event = events.find(e => e.id === id);
+				const event = events?.find(e => e.id === id);
 				console.log(event);
 			}}
 		/>
