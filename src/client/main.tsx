@@ -7,8 +7,8 @@ import { ErrorBoundary } from "@client/components/ErrorBoundary";
 import { Home } from "@client/components/Home";
 import { Layout } from "@client/components/Layout";
 import { assertGetElementById, registerServiceWorker } from "@client/helpers/browser";
-import { loader } from "@client/hooks/useApi";
 import { queryClient } from "@client/helpers/http";
+import { loader } from "@client/hooks/useApi";
 
 window.addEventListener("load", () => {
 	registerServiceWorker().catch(error => {
