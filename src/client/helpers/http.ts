@@ -22,7 +22,7 @@ export const fetchEvents = async () => {
 		const events = eventsSchema.parse(unparsedEvents);
 		return events;
 	} catch (error) {
-		console.error("Failed to validate events:", error);
+		console.error("Failed to parse schema of fetched events:", error);
 		throw new Error("Calendar data does not match expected schema");
 	}
 };
