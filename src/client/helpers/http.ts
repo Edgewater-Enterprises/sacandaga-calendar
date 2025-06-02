@@ -7,15 +7,29 @@ export const fetchEvents = async () => {
 	// Using mock data for now
 	const unparsedEvents = [
 		{
-			id: "3f6c8b2d-9e1b-4a3a-91d6-427d3e0cf59e",
-			title: "Example Stay",
-			description: "A stay at the lake!",
-			start: "2025-06-16",
-			end: "2025-06-20",
+			id: crypto.randomUUID(),
+			title: "Opening Weekend",
+			start: "2025-07-04",
+			end: "2025-07-06",
+			description: "Elaine, Rick, Mark, Danee",
 			backgroundColor: EventColor.Blue
 		},
 		{
-			id: "f9d2b81e-47df-4c93-8b62-6d0a9c8ffb4e",
+			id: crypto.randomUUID(),
+			title: "Michael & Katie",
+			start: "2025-07-25",
+			end: "2025-08-10",
+			backgroundColor: EventColor.Orange
+		},
+		{
+			id: crypto.randomUUID(),
+			title: "Scott, Doug, Mark, Elaine, Rick",
+			start: "2025-08-16",
+			end: "2025-08-23",
+			backgroundColor: EventColor.Purple
+		},
+		{
+			id: crypto.randomUUID(),
 			title: "Chris & Friends",
 			start: "2025-08-28",
 			end: "2025-09-02",
