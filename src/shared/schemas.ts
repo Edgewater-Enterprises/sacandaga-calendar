@@ -5,7 +5,8 @@ export const eventSchema = z.object({
 	title: z.string(),
 	description: z.string().optional(),
 	start: z.string(),
-	end: z.string()
+	end: z.string(),
+	backgroundColor: z.string()
 });
 
 export const eventsSchema = z.array(eventSchema);

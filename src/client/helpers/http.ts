@@ -1,6 +1,8 @@
 import { eventsSchema } from "@shared/schemas";
 import { QueryClient } from "@tanstack/react-query";
 
+import { EventColor } from "@shared/constants";
+
 export const fetchEvents = async () => {
 	// Using mock data for now
 	const unparsedEvents = [
@@ -9,13 +11,15 @@ export const fetchEvents = async () => {
 			title: "Example Stay",
 			description: "A stay at the lake!",
 			start: "2025-06-16",
-			end: "2025-06-20"
+			end: "2025-06-20",
+			backgroundColor: EventColor.Blue
 		},
 		{
 			id: "f9d2b81e-47df-4c93-8b62-6d0a9c8ffb4e",
 			title: "Chris & Friends",
 			start: "2025-08-28",
-			end: "2025-09-02"
+			end: "2025-09-02",
+			backgroundColor: EventColor.Orange
 		}
 	];
 	try {
