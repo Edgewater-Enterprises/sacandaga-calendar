@@ -22,10 +22,11 @@ createRoot(root).render(
 			<RouterProvider
 				router={createBrowserRouter([
 					{
+						path: "/",
 						element: <Layout />,
 						errorElement: <ErrorBoundary />,
 						hydrateFallbackElement: <></>,
-						children: [{ path: "/", element: <Home />, loader, index: true }]
+						children: [{ index: true, element: <Home />, loader }]
 					}
 				])}
 			/>
