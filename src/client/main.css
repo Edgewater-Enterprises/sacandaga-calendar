@@ -75,6 +75,7 @@ select {
 }
 
 .fc-event {
+	border: none;
 	padding: 0.2rem 0.6rem;
 	text-align: center;
 	border-radius: 1rem;

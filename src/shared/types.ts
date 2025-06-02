@@ -7,7 +7,7 @@ export type TConfig = {
 };
 
 export type TAppContext = {
-	modalContent: React.ReactNode;
+	modalContent?: React.ReactNode;
 	modalProps?: TModalProps;
 	closeModal: () => void;
 	viewEvent: (event: TEvent) => void;

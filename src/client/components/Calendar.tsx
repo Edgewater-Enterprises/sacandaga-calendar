@@ -4,6 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 
 import { useApi } from "@client/hooks/useApi";
 import { useApp } from "@client/hooks/useApp";
+import { EventColor } from "@shared/constants";
 
 export const Calendar = () => {
 	const { events } = useApi();
@@ -19,7 +20,8 @@ export const Calendar = () => {
 				endDate.setDate(endDate.getDate() + 1);
 				return {
 					...event,
-					end: endDate.toISOString().split("T")[0]
+					end: endDate.toISOString().split("T")[0],
+					backgroundColor: EventColor.Blue
 				};
 			})}
 			dateClick={date => console.log(date.dateStr)}

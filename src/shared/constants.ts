@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 import type { TConfig } from "@shared/types";
 import { author, description, license, version } from "package.json";
 
@@ -31,6 +29,16 @@ export enum Path {
 
 export enum ErrorMessage {
 	InternalServerError = "Internal Server Error"
+}
+
+export enum EventColor {
+	Blue = "#2365A1",
+	Green = "#388E3C",
+	Purple = "#7B1FA2",
+	Red = "#C62828",
+	Orange = "#A0522D",
+	Gray = "#555555",
+	Teal = "#00796B"
 }
 
 export const STORED_STATE_PREFIX = "state";
