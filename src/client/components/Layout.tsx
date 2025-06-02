@@ -6,7 +6,7 @@ export const Layout = () => {
 	return (
 		<div className="layout">
 			<Header />
-			<main style={{ flex: 1, overflowY: "auto" }}>
+			<main>
 				<Outlet />
 			</main>
 		</div>

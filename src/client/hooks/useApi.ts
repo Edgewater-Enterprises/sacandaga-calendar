@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
-import type { TEvent } from "@shared/types";
+import type { TAddEvent, TEvent } from "@shared/types";
 
 // For initial data fetching to be done via React Router loader before React renders
 export const loader = async () => {
-	// mock event data for now
+	// Mock event data for now
 	const events: TEvent[] = [
 		{
 			id: "3f6c8b2d-9e1b-4a3a-91d6-427d3e0cf59e",
@@ -25,7 +26,19 @@ export const loader = async () => {
 
 // For API interactions to be used within React components
 export const useApi = () => {
-	const events = useLoaderData<typeof loader>();
+	const [events, setEvents] = useState(useLoaderData<typeof loader>());
 
-	return { events };
+	const addEvent = (toAdd: TAddEvent) => {
+		const newEvent: TEvent = {
+			id: crypto.randomUUID(),
+			...toAdd
+		};
+		setEvents(current => [...current, newEvent]);
+	};
+
+	const deleteEvent = (id: string) => {
+		setEvents(current => current.filter(event => event.id !== id));
+	};
+
+	return { events, addEvent, deleteEvent };
 };

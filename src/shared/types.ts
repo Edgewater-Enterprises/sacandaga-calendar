@@ -13,3 +13,5 @@ export type TEvent = {
 	start: string;
 	end: string;
 };
+
+export type TAddEvent = Omit<TEvent, "id">;

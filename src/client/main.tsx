@@ -3,7 +3,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import { AppProvider } from "@client/components/AppProvider";
 import { ErrorBoundary } from "@client/components/ErrorBoundary";
 import { Home } from "@client/components/Home";
 import { Layout } from "@client/components/Layout";
@@ -20,18 +19,16 @@ const root = assertGetElementById("root");
 createRoot(root).render(
 	<StrictMode>
 		<QueryClientProvider client={new QueryClient()}>
-			<AppProvider>
-				<RouterProvider
-					router={createBrowserRouter([
-						{
-							element: <Layout />,
-							errorElement: <ErrorBoundary />,
-							hydrateFallbackElement: <></>,
-							children: [{ index: true, element: <Home />, loader }]
-						}
-					])}
-				/>
-			</AppProvider>
+			<RouterProvider
+				router={createBrowserRouter([
+					{
+						element: <Layout />,
+						errorElement: <ErrorBoundary />,
+						hydrateFallbackElement: <></>,
+						children: [{ path: "/", element: <Home />, loader, index: true }]
+					}
+				])}
+			/>
 		</QueryClientProvider>
 	</StrictMode>
 );
