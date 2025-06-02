@@ -9,12 +9,12 @@ export const fetchEvents = async () => {
 			title: "Example Stay",
 			description: "A stay at the lake!",
 			start: "2025-06-16",
-			end: "2025-06-21"
+			end: "2025-06-20"
 		},
 		{
 			id: "f9d2b81e-47df-4c93-8b62-6d0a9c8ffb4e",
 			title: "Chris & Friends",
-			start: "2025-08-29",
+			start: "2025-08-28",
 			end: "2025-09-02"
 		}
 	];
