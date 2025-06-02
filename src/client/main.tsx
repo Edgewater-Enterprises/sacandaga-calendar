@@ -8,7 +8,7 @@ import { Home } from "@client/components/Home";
 import { Layout } from "@client/components/Layout";
 import { assertGetElementById, registerServiceWorker } from "@client/helpers/browser";
 import { queryClient } from "@client/helpers/http";
-import { loader } from "@client/hooks/useApi";
+import { loaderQuery } from "@client/hooks/useApi";
 
 window.addEventListener("load", () => {
 	registerServiceWorker().catch(error => {
@@ -27,7 +27,13 @@ createRoot(root).render(
 						element: <Layout />,
 						errorElement: <ErrorBoundary />,
 						hydrateFallbackElement: <></>,
-						children: [{ index: true, element: <Home />, loader }]
+						children: [
+							{
+								index: true,
+								element: <Home />,
+								loader: () => queryClient.ensureQueryData(loaderQuery)
+							}
+						]
 					}
 				])}
 			/>
