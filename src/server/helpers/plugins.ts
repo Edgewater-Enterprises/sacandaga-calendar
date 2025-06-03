@@ -1,4 +1,3 @@
-import { cors } from "@elysiajs/cors";
 import { staticPlugin } from "@elysiajs/static";
 import { Elysia } from "elysia";
 import { helmet } from "elysia-helmet";
@@ -6,13 +5,13 @@ import { helmet } from "elysia-helmet";
 import { indexHtml } from "@server/helpers/elysia";
 import { Path } from "@shared/constants";
 
-export const plugins = new Elysia().use(cors()).use(
+export const plugins = new Elysia().use(
 	helmet({
 		contentSecurityPolicy: {
 			directives: {
 				baseUri: ["'self'"],
 				childSrc: ["'self'"],
-				connectSrc: ["'self'"],
+				connectSrc: ["'self'", "https://sacandaga-backend.fly.dev"],
 				defaultSrc: ["'self'"],
 				fontSrc: ["'self'", "https:", "data:"],
 				formAction: ["'self'"],

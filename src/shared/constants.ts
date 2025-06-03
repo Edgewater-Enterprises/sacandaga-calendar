@@ -1,6 +1,8 @@
 import type { TConfig } from "@shared/types";
 import { author, description, license, version } from "package.json";
 
+export const API_URL = "https://sacandaga-backend.fly.dev";
+
 export const AppInfo = {
 	name: "Sacandaga Calendar",
 	version,
@@ -28,7 +30,8 @@ export enum Path {
 }
 
 export enum ErrorMessage {
-	InternalServerError = "Internal Server Error"
+	InternalServerError = "Internal Server Error",
+	FailedToLoadCalendarData = "Failed to load calendar data"
 }
 
 export enum EventColor {

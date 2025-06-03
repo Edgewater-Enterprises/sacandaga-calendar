@@ -10,18 +10,21 @@ export const Calendar = () => {
 
 	const { viewEvent } = useApp();
 
+	const calendarEvents = events.map(event => {
+		const endDate = new Date(event.end);
+		endDate.setDate(endDate.getDate() + 1);
+		return {
+			...event,
+			end: endDate.toISOString().split("T")[0],
+			backgroundColor: event.background_color
+		};
+	});
+
 	return (
 		<FullCalendar
 			plugins={[dayGridPlugin, interactionPlugin]}
 			initialView="dayGridMonth"
-			events={events.map(event => {
-				const endDate = new Date(event.end);
-				endDate.setDate(endDate.getDate() + 1);
-				return {
-					...event,
-					end: endDate.toISOString().split("T")[0]
-				};
-			})}
+			events={calendarEvents}
 			dateClick={date => console.log(date.dateStr)}
 			eventClick={({ event: { id } }) => {
 				const event = events.find(e => e.id === id);
