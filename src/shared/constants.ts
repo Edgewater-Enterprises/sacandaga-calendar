@@ -1,7 +1,9 @@
 import type { TConfig } from "@shared/types";
 import { author, description, license, version } from "package.json";
 
-export const API_URL = "https://sacandaga-backend.fly.dev";
+export const API_URL_DEV = "http://localhost:5000";
+
+export const API_URL_PROD = "https://sacandaga-backend.fly.dev";
 
 export const AppInfo = {
 	name: "Sacandaga Calendar",
