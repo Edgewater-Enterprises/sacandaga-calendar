@@ -1,24 +1,22 @@
 import { eventsSchema } from "@shared/schemas";
 import { QueryClient } from "@tanstack/react-query";
 
+import { isLocal } from "@client/helpers/browser";
 import { API_URL_DEV, API_URL_PROD, ErrorMessage } from "@shared/constants";
 
 export const fetchAndParseEvents = async () => {
-	const isLocal =
-		window.location.hostname === "localhost" ||
-		window.location.hostname === "127.0.0.1" ||
-		window.location.hostname.startsWith("192.168.");
-
 	const API_URL = isLocal ? API_URL_DEV : API_URL_PROD;
 
 	const unparsedEvents = await httpClient.GET(`${API_URL}/event`).catch(error => {
 		console.error("Failed to fetch events:", error);
 		throw new Error(ErrorMessage.FailedToLoadCalendarData);
 	});
+
 	const events = eventsSchema.parseAsync(unparsedEvents).catch(error => {
 		console.error("Calendar data does not match expected schema:", error);
 		throw new Error(ErrorMessage.FailedToLoadCalendarData);
 	});
+
 	return events;
 };
 

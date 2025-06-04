@@ -1,7 +1,14 @@
+import { useApp } from "@client/hooks/useApp";
+
 export const Header = () => {
+	const { addEvent } = useApp();
+
 	return (
 		<header className="header">
-			<h1>Sacandaga Calendar</h1>
+			<div />
+			<button type="button" className="btn" onClick={addEvent}>
+				new&nbsp;+
+			</button>
 		</header>
 	);
 };

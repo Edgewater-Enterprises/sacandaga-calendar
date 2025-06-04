@@ -11,6 +11,7 @@ export type TAppContext = {
 	modalProps?: TModalProps;
 	closeModal: () => void;
 	viewEvent: (event: TEvent) => void;
+	addEvent: () => void;
 };
 
 export type TReactStateSetter<T> = React.Dispatch<React.SetStateAction<T>>;

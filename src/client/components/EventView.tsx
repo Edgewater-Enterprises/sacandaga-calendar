@@ -4,7 +4,7 @@ export const EventView = (event: TEvent) => {
 	const { title, start, end, description } = event;
 
 	return (
-		<div className="event-view">
+		<div className="modal-content">
 			<h1>{title}</h1>
 			<p>
 				{displayDate(start)} - {displayDate(end)}
