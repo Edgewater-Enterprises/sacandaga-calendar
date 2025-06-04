@@ -21,6 +21,8 @@ export type TEvents = z.infer<typeof eventsSchema>;
 
 export type TAddEvent = Omit<TEvent, "id">;
 
+export type TEditEvent = Omit<Partial<TEvent>, "id">;
+
 export type TModalProps = {
 	onClose?: () => void;
 	showCloseBtn?: boolean;
