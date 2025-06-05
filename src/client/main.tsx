@@ -7,6 +7,7 @@ import { AppProvider } from "@client/components/AppProvider";
 import { ErrorBoundary } from "@client/components/ErrorBoundary";
 import { Home } from "@client/components/Home";
 import { Layout } from "@client/components/Layout";
+import { Loading } from "@client/components/Loading";
 import { assertGetElementById, registerServiceWorker } from "@client/helpers/browser";
 import { queryClient } from "@client/helpers/http";
 import { loaderQuery } from "@client/hooks/useApi";
@@ -28,7 +29,7 @@ createRoot(root).render(
 							path: "/",
 							element: <Layout />,
 							errorElement: <ErrorBoundary />,
-							hydrateFallbackElement: <></>,
+							hydrateFallbackElement: <Loading />,
 							children: [
 								{
 									index: true,

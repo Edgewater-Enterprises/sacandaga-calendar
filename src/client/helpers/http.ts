@@ -6,25 +6,16 @@ import { ErrorMessage } from "@shared/constants";
 
 export const fetchAndParseEvents = async () => {
 	try {
-		const res = await httpClient.GET(`${Config.API_URL}/event`).catch(error => {
-			console.error("Failed to fetch events:");
-			throw error;
-		});
+		const res = await httpClient.GET(`${Config.API_URL}/event`);
 
 		if (!res.ok) {
 			console.error("Bad response fetching events:");
 			throw res;
 		}
 
-		const unparsedEvents = await res.json().catch(error => {
-			console.error("Failed to parse events response:");
-			throw error;
-		});
+		const unparsedEvents = await res.json();
 
-		const events = eventsSchema.parseAsync(unparsedEvents).catch(error => {
-			console.error("Calendar data does not match expected schema:");
-			throw error;
-		});
+		const events = await eventsSchema.parseAsync(unparsedEvents);
 
 		return events;
 	} catch (error) {

@@ -33,8 +33,8 @@ export enum Path {
 }
 
 export enum ErrorMessage {
-	InternalServerError = "Internal Server Error",
-	LoadEventData = "Erring loading calendar data",
+	InternalServerError = "Internal server error",
+	LoadEventData = "Error loading calendar data",
 	AddEvent = "Error creating new stay",
 	EditEvent = "Error updating stay",
 	DeleteEvent = "Error deleting stay",
