@@ -25,11 +25,6 @@ const getErrorMessage = (error: unknown) => {
 	return ErrorMessage.InternalServerError;
 };
 
-export const onAfterHandle: Handler = c => {
-	// Needed to allow service worker caching
-	c.set.headers.vary = undefined;
-};
-
 // Creates a Node-style HTTP adapter function (needed to attach Socket.IO to Elysia)
 export const createHttpAdapter = (app: { handle: (req: Request) => Promise<Response> }) => {
 	return async (req: IncomingMessage, res: ServerResponse) => {

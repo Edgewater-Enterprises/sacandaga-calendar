@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 import { Elysia } from "elysia";
 
 import { Config } from "@server/helpers/config";
-import { createHttpAdapter, onAfterHandle, onError } from "@server/helpers/elysia";
+import { createHttpAdapter, onError } from "@server/helpers/elysia";
 import { plugins, serveStatic } from "@server/helpers/plugins";
 import { Path } from "@shared/constants";
 
@@ -11,7 +11,6 @@ const { PORT } = Config;
 
 const app = new Elysia({ aot: true, precompile: true, nativeStaticResponse: true })
 	.onError(c => onError(c))
-	.onAfterHandle(onAfterHandle)
 	.use(plugins);
 
 if (existsSync(Path.Public)) app.use(serveStatic);

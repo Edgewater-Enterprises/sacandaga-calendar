@@ -1,4 +1,4 @@
-import { API_URL_PROD, HASH_REGEX } from "@shared/constants";
+import { API_URL_DEV, API_URL_PROD, HASH_REGEX } from "@shared/constants";
 
 declare const self: ServiceWorkerGlobalScope & {
 	__WB_DISABLE_DEV_LOGS: boolean;
@@ -8,7 +8,9 @@ self.__WB_DISABLE_DEV_LOGS = true;
 
 const manifest = self.__WB_MANIFEST;
 
-const urlsToPrecache = ["/", `${API_URL_PROD}/event`, ...manifest.map(({ url }) => url)];
+const API_URL = self.location.hostname === "localhost" ? API_URL_DEV : API_URL_PROD;
+
+const urlsToPrecache = ["/", `${API_URL}/event`, ...manifest.map(({ url }) => url)];
 
 // Increment this version to invalidate cache and force clients to refetch all assets
 const CACHE_VERSION = "v2";

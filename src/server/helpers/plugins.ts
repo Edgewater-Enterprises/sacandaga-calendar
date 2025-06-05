@@ -3,7 +3,7 @@ import { Elysia } from "elysia";
 import { helmet } from "elysia-helmet";
 
 import { indexHtml } from "@server/helpers/elysia";
-import { Path } from "@shared/constants";
+import { API_URL_DEV, API_URL_PROD, Path } from "@shared/constants";
 
 export const plugins = new Elysia().use(
 	helmet({
@@ -11,7 +11,7 @@ export const plugins = new Elysia().use(
 			directives: {
 				baseUri: ["'self'"],
 				childSrc: ["'self'"],
-				connectSrc: ["'self'", "https://sacandaga-backend.fly.dev"],
+				connectSrc: ["'self'", API_URL_DEV, API_URL_PROD],
 				defaultSrc: ["'self'"],
 				fontSrc: ["'self'", "https:", "data:"],
 				formAction: ["'self'"],
