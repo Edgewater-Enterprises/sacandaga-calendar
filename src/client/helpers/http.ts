@@ -5,39 +5,63 @@ import { Config } from "@client/helpers/config";
 import { ErrorMessage } from "@shared/constants";
 
 export const fetchAndParseEvents = async () => {
-	const unparsedEvents = await httpClient.GET(`${Config.API_URL}/event`).catch(error => {
-		console.error("Failed to fetch events:", error);
-		throw new Error(ErrorMessage.FailedToLoadCalendarData);
-	});
+	try {
+		const res = await httpClient.GET(`${Config.API_URL}/event`).catch(error => {
+			console.error("Failed to fetch events:");
+			throw error;
+		});
 
-	const events = eventsSchema.parseAsync(unparsedEvents).catch(error => {
-		console.error("Calendar data does not match expected schema:", error);
-		throw new Error(ErrorMessage.FailedToLoadCalendarData);
-	});
+		if (!res.ok) {
+			console.error("Bad response fetching events:");
+			throw res;
+		}
 
-	return events;
+		const unparsedEvents = await res.json().catch(error => {
+			console.error("Failed to parse events response:");
+			throw error;
+		});
+
+		const events = eventsSchema.parseAsync(unparsedEvents).catch(error => {
+			console.error("Calendar data does not match expected schema:");
+			throw error;
+		});
+
+		return events;
+	} catch (error) {
+		console.error(error);
+		throw new Error(ErrorMessage.LoadEventData);
+	}
 };
 
 export const queryClient = new QueryClient();
 
-export const httpClient = {
-	GET: async <T>(url: string, { headers }: { headers?: Headers } = {}) =>
-		request<T>({ url, method: "GET", headers }),
-	POST: async <T>(url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
-		request<T>({ url, method: "POST", headers, body }),
-	PUT: async <T>(url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
-		request<T>({ url, method: "PUT", headers, body }),
-	DELETE: async <T>(url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
-		request<T>({ url, method: "DELETE", headers, body })
+export const buildBearerAuthHeaders = (token: string) => {
+	const headers = new Headers();
+	if (!token) return headers;
+	headers.set("Authorization", `Bearer ${token}`);
+	return headers;
 };
 
-const request = async <T = unknown>({
+export const httpClient = {
+	GET: (url: string, { headers }: { headers?: Headers } = {}) =>
+		request({ url, method: "GET", headers }),
+	POST: (url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
+		request({ url, method: "POST", headers, body }),
+	PATCH: (url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
+		request({ url, method: "PATCH", headers, body }),
+	PUT: (url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
+		request({ url, method: "PUT", headers, body }),
+	DELETE: (url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
+		request({ url, method: "DELETE", headers, body })
+};
+
+const request = ({
 	url,
 	method,
 	headers,
 	body
 }: { url: string; method: string; headers?: Headers; body?: unknown }) => {
-	const res = await fetch(url, {
+	return fetch(url, {
 		method,
 		headers: {
 			"Content-Type": "application/json",
@@ -46,6 +70,4 @@ const request = async <T = unknown>({
 		},
 		body: body ? JSON.stringify(body) : undefined
 	});
-	const data = await res.json();
-	return data as T;
 };

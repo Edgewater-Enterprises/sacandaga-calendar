@@ -4,23 +4,23 @@ import { storage } from "@client/helpers/browser";
 import { STORED_STATE_PREFIX } from "@shared/constants";
 import type { TReactStateSetter } from "@shared/types";
 
-export const usePersistedState = <T>(
-	initialValue: T,
-	id: string,
-	isPersistDisabled = false
-): [T, TReactStateSetter<T>] => {
+export const usePersistedState = <T = undefined>({
+	initialValue,
+	id,
+	isUseLocalStorage = false
+}: { initialValue: T; id: string; isUseLocalStorage?: boolean }): [T, TReactStateSetter<T>] => {
+	const browserStorage = isUseLocalStorage ? storage.local : storage.session;
+
 	const persistedInitialValue = useMemo(() => {
-		if (isPersistDisabled) return initialValue;
-		const storedValue = storage.session.getItem<T>(`${STORED_STATE_PREFIX}:${id}`);
+		const storedValue = browserStorage.getItem<T>(`${STORED_STATE_PREFIX}:${id}`);
 		return storedValue ?? initialValue;
-	}, [initialValue, id, isPersistDisabled]);
+	}, [initialValue, id, browserStorage.getItem]);
 
 	const [state, setState] = useState<T>(persistedInitialValue);
 
 	useEffect(() => {
-		if (isPersistDisabled) return;
-		storage.session.setItem(`${STORED_STATE_PREFIX}:${id}`, state);
-	}, [id, isPersistDisabled, state]);
+		browserStorage.setItem(`${STORED_STATE_PREFIX}:${id}`, state);
+	}, [id, state, browserStorage.setItem]);
 
 	return [state, setState];
 };
