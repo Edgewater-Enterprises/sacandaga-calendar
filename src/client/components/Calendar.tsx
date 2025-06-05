@@ -8,7 +8,7 @@ import { useApp } from "@client/hooks/useApp";
 export const Calendar = () => {
 	const { events } = useApi();
 
-	const { viewEvent } = useApp();
+	const { viewEventInModal, openAddEventModal } = useApp();
 
 	const calendarEvents = events.map(event => {
 		const endDate = new Date(event.end);
@@ -25,11 +25,11 @@ export const Calendar = () => {
 			plugins={[dayGridPlugin, interactionPlugin]}
 			initialView="dayGridMonth"
 			events={calendarEvents}
-			dateClick={date => console.log(date.dateStr)}
+			dateClick={({ dateStr }) => openAddEventModal(dateStr)}
 			eventClick={({ event: { id } }) => {
 				const event = events.find(e => e.id === id);
-				if (!event) throw new Error(`Event with id "${id}" not found`);
-				viewEvent(event);
+				if (!event) throw new Error(`Event with id "${id}" does not exist`);
+				viewEventInModal(event);
 			}}
 		/>
 	);

@@ -23,7 +23,7 @@ export const Modal = ({ onClose, showCloseBtn = true }: TModalProps) => {
 	const onRequestClose = () => setIsZoomed(false);
 
 	return (
-		<MuiModal open={!!modalContent} onClose={onRequestClose} disableAutoFocus>
+		<MuiModal open={!!modalContent} onClose={onRequestClose} disableScrollLock>
 			<div className="absolute-centered" style={{ borderRadius: "50%", outline: "none" }}>
 				<Zoom in={isZoomed}>
 					<div style={{ position: "relative", borderRadius: "50%" }}>

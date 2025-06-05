@@ -1,4 +1,5 @@
 import type { TConfig } from "@shared/types";
+
 import { author, description, license, version } from "package.json";
 
 export const API_URL_DEV = "http://localhost:5000";

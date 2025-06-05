@@ -1,13 +1,11 @@
 import { eventsSchema } from "@shared/schemas";
 import { QueryClient } from "@tanstack/react-query";
 
-import { isLocal } from "@client/helpers/browser";
-import { API_URL_DEV, API_URL_PROD, ErrorMessage } from "@shared/constants";
+import { Config } from "@client/helpers/config";
+import { ErrorMessage } from "@shared/constants";
 
 export const fetchAndParseEvents = async () => {
-	const API_URL = isLocal ? API_URL_DEV : API_URL_PROD;
-
-	const unparsedEvents = await httpClient.GET(`${API_URL}/event`).catch(error => {
+	const unparsedEvents = await httpClient.GET(`${Config.API_URL}/event`).catch(error => {
 		console.error("Failed to fetch events:", error);
 		throw new Error(ErrorMessage.FailedToLoadCalendarData);
 	});
@@ -23,23 +21,17 @@ export const fetchAndParseEvents = async () => {
 export const queryClient = new QueryClient();
 
 export const httpClient = {
-	GET: async <T = unknown>(url: string, { headers }: { headers?: Headers } = {}) =>
+	GET: async <T>(url: string, { headers }: { headers?: Headers } = {}) =>
 		request<T>({ url, method: "GET", headers }),
-	POST: async <T = unknown>(
-		url: string,
-		{ headers, body }: { headers?: Headers; body?: unknown } = {}
-	) => request<T>({ url, method: "POST", headers, body }),
-	PUT: async <T = unknown>(
-		url: string,
-		{ headers, body }: { headers?: Headers; body?: unknown } = {}
-	) => request<T>({ url, method: "PUT", headers, body }),
-	DELETE: async <T = unknown>(
-		url: string,
-		{ headers, body }: { headers?: Headers; body?: unknown } = {}
-	) => request<T>({ url, method: "DELETE", headers, body })
+	POST: async <T>(url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
+		request<T>({ url, method: "POST", headers, body }),
+	PUT: async <T>(url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
+		request<T>({ url, method: "PUT", headers, body }),
+	DELETE: async <T>(url: string, { headers, body }: { headers?: Headers; body?: unknown } = {}) =>
+		request<T>({ url, method: "DELETE", headers, body })
 };
 
-const request = async <T>({
+const request = async <T = unknown>({
 	url,
 	method,
 	headers,

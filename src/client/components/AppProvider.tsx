@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { EventAdd } from "@client/components/EventAdd";
+import { AddEvent } from "@client/components/AddEvent";
 import { EventView } from "@client/components/EventView";
 import { AppContext } from "@client/contexts/app";
 import type { TEvent, TModalProps } from "@shared/types";
@@ -14,18 +14,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 		setModalProps({});
 	};
 
-	const viewEvent = (event: TEvent) => {
-		setModalContent(<EventView {...event} />);
-		setModalProps({ showCloseBtn: true });
-	};
+	const viewEventInModal = (event: TEvent) => setModalContent(<EventView {...event} />);
 
-	const addEvent = () => {
-		setModalContent(<EventAdd />);
-		setModalProps({ showCloseBtn: true });
-	};
+	const openAddEventModal = (start?: string) => setModalContent(<AddEvent start={start} />);
 
 	return (
-		<AppContext.Provider value={{ modalContent, modalProps, closeModal, viewEvent, addEvent }}>
+		<AppContext.Provider
+			value={{ modalContent, modalProps, closeModal, viewEventInModal, openAddEventModal }}
+		>
 			{children}
 		</AppContext.Provider>
 	);

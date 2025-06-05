@@ -10,8 +10,8 @@ export type TAppContext = {
 	modalContent?: React.ReactNode;
 	modalProps?: TModalProps;
 	closeModal: () => void;
-	viewEvent: (event: TEvent) => void;
-	addEvent: () => void;
+	viewEventInModal: (event: TEvent) => void;
+	openAddEventModal: (start?: string) => void;
 };
 
 export type TReactStateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
