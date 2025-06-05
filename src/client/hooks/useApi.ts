@@ -95,7 +95,7 @@ export const useApi = () => {
 					})
 					.catch(error => {
 						console.error("Failed to validate token:", error);
-						throw new Error(ErrorMessage.InvalidToken);
+						throw new Error(ErrorMessage.ValidateToken);
 					});
 				if (!res.ok) throw new Error(ErrorMessage.InvalidToken);
 			},

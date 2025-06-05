@@ -38,7 +38,8 @@ export enum ErrorMessage {
 	AddEvent = "Error creating new stay",
 	EditEvent = "Error updating stay",
 	DeleteEvent = "Error deleting stay",
-	InvalidToken = "Invalid token"
+	ValidateToken = "Error validating password",
+	InvalidToken = "Incorrect password"
 }
 
 export enum EventColor {
