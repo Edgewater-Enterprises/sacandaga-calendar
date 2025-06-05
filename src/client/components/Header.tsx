@@ -4,11 +4,11 @@ export const Header = () => {
 	const { openAddEventModal } = useApp();
 
 	return (
-		<header className="header">
+		<div className="header">
 			<div />
 			<button type="button" className="btn" onClick={() => openAddEventModal()}>
 				new&nbsp;+
 			</button>
-		</header>
+		</div>
 	);
 };

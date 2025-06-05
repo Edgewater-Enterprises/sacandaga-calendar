@@ -7,9 +7,11 @@ export const Layout = () => {
 	const { modalContent, modalProps } = useApp();
 
 	return (
-		<div className="layout">
-			<Outlet />
+		<>
+			<main className="layout">
+				<Outlet />
+			</main>
 			<Modal {...modalProps}>{modalContent}</Modal>
-		</div>
+		</>
 	);
 };
