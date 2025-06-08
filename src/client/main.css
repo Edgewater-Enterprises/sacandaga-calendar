@@ -42,7 +42,7 @@ select {
 }
 
 .calendar-container {
-	height: max(90vh, 40rem);
+	height: max(90vh, 50vw);
 	display: flex;
 	flex-direction: column;
 }
