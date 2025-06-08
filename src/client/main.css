@@ -41,6 +41,12 @@ select {
 	justify-content: space-between;
 }
 
+.calendar-container {
+	height: max(90vh, 40rem);
+	display: flex;
+	flex-direction: column;
+}
+
 .fc-toolbar {
 	margin-bottom: 1rem !important;
 }

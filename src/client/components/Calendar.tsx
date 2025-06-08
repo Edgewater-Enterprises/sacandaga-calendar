@@ -21,16 +21,19 @@ export const Calendar = () => {
 	});
 
 	return (
-		<FullCalendar
-			plugins={[dayGridPlugin, interactionPlugin]}
-			initialView="dayGridMonth"
-			events={calendarEvents}
-			dateClick={({ dateStr }) => openAddEventModal(dateStr)}
-			eventClick={({ event: { id } }) => {
-				const event = events.find(e => e.id === id);
-				if (!event) throw new Error(`Event with id "${id}" does not exist`);
-				viewEventInModal(event);
-			}}
-		/>
+		<div className="calendar-container">
+			<FullCalendar
+				plugins={[dayGridPlugin, interactionPlugin]}
+				initialView="dayGridMonth"
+				height="100%"
+				events={calendarEvents}
+				dateClick={({ dateStr }) => openAddEventModal(dateStr)}
+				eventClick={({ event: { id } }) => {
+					const event = events.find(e => e.id === id);
+					if (!event) throw new Error(`Event with id "${id}" does not exist`);
+					viewEventInModal(event);
+				}}
+			/>
+		</div>
 	);
 };
