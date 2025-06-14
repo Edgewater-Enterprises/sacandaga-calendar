@@ -7,7 +7,7 @@ export const Header = () => {
 		<div className="header">
 			<div />
 			<button type="button" className="btn" onClick={() => openAddEventModal()}>
-				new&nbsp;+
+				add&nbsp;+
 			</button>
 		</div>
 	);

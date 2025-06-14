@@ -99,16 +99,24 @@ select {
 	background-color: var(--today-bg-color);
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	row-gap: 1rem;
-	padding: 1rem;
+	padding: 2rem 1rem;
 	width: calc(100vw - 2rem);
 	height: calc(100vh - 2rem);
 	max-width: 600px;
-	max-height: 400px;
+	max-height: fit-content;
+	min-width: 320px;
 	border-radius: 0.25rem;
-	text-align: center;
+	overflow-y: auto;
+}
+
+.form-content {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	row-gap: 2rem;
 }
 
 .absolute-centered {
@@ -130,4 +138,21 @@ select {
 .btn:hover {
 	background-color: #1e2b37;
 	cursor: pointer;
+}
+
+.labelled-field {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.5rem;
+}
+
+.required {
+	color: red;
+	padding-left: 0.25rem;
+}
+
+.error {
+	color: red;
+	padding-left: 1rem;
+	font-family: monospace;
 }
