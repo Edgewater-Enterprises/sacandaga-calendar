@@ -1,14 +1,14 @@
 import { useApp } from "@client/hooks/useApp";
 
 export const Header = () => {
-	const { openAddEventModal } = useApp();
+  const { openAddEventModal } = useApp();
 
-	return (
-		<div className="header">
-			<div />
-			<button type="button" className="btn" onClick={() => openAddEventModal()}>
-				add&nbsp;+
-			</button>
-		</div>
-	);
+  return (
+    <div className="header">
+      <div />
+      <button type="button" className="btn" onClick={() => openAddEventModal()}>
+        add&nbsp;+
+      </button>
+    </div>
+  );
 };

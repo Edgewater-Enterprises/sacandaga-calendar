@@ -10,8 +10,8 @@ import { Path } from "@shared/constants";
 const { PORT } = Config;
 
 const app = new Elysia({ aot: true, precompile: true, nativeStaticResponse: true })
-	.onError(c => onError(c))
-	.use(plugins);
+  .onError(c => onError(c))
+  .use(plugins);
 
 if (existsSync(Path.Public)) app.use(serveStatic);
 

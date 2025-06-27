@@ -13,34 +13,34 @@ import { queryClient } from "@client/helpers/http";
 import { loaderQuery } from "@client/hooks/useApi";
 
 window.addEventListener("load", () => {
-	registerServiceWorker().catch(error => {
-		console.error("Service worker registration failed:", error);
-	});
+  registerServiceWorker().catch(error => {
+    console.error("Service worker registration failed:", error);
+  });
 });
 
 const root = assertGetElementById("root");
 createRoot(root).render(
-	<StrictMode>
-		<QueryClientProvider client={queryClient}>
-			<AppProvider>
-				<RouterProvider
-					router={createBrowserRouter([
-						{
-							path: "/",
-							element: <Layout />,
-							errorElement: <ErrorBoundary />,
-							hydrateFallbackElement: <Loading />,
-							children: [
-								{
-									index: true,
-									element: <Home />,
-									loader: () => queryClient.ensureQueryData(loaderQuery)
-								}
-							]
-						}
-					])}
-				/>
-			</AppProvider>
-		</QueryClientProvider>
-	</StrictMode>
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <AppProvider>
+        <RouterProvider
+          router={createBrowserRouter([
+            {
+              path: "/",
+              element: <Layout />,
+              errorElement: <ErrorBoundary />,
+              hydrateFallbackElement: <Loading />,
+              children: [
+                {
+                  index: true,
+                  element: <Home />,
+                  loader: () => queryClient.ensureQueryData(loaderQuery),
+                },
+              ],
+            },
+          ])}
+        />
+      </AppProvider>
+    </QueryClientProvider>
+  </StrictMode>,
 );
