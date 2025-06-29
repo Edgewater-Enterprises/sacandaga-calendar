@@ -34,7 +34,6 @@ export const Calendar = () => {
           addEvent(dateStr);
         }}
         eventClick={({ event: { id } }) => {
-          if (!isAdmin) return;
           const event = events.find(e => e.id === id);
           if (!event) throw new Error(`Event with id "${id}" does not exist`);
           viewEvent(event);

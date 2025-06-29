@@ -1,7 +1,9 @@
 import { Config } from "@client/helpers/config";
-import { buildBearerAuthHeaders, httpClient } from "@client/helpers/http";
+import { buildBearerAuthHeaders, httpClient, queryClient } from "@client/helpers/http";
 import { ErrorMessage } from "@shared/constants";
 import type { TAddEvent, TEvent } from "@shared/types";
+
+export const invalidateEvents = () => queryClient.invalidateQueries({ queryKey: ["events"] });
 
 export const submitAddEvent = async (event: TAddEvent) => {
   const { headers } = buildBearerAuthHeaders();
@@ -26,6 +28,18 @@ export const submitEditEvent = async (event: TEvent) => {
     });
   } catch (_error) {
     throw new Error(ErrorMessage.EditEvent);
+  }
+};
+
+export const submitDeleteEvent = async (eventId: string) => {
+  const { headers } = buildBearerAuthHeaders();
+
+  try {
+    await httpClient.DELETE(`${Config.API_URL}/event/${eventId}`, {
+      headers,
+    });
+  } catch (_error) {
+    throw new Error(ErrorMessage.DeleteEvent);
   }
 };
 

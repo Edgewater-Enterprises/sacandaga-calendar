@@ -14,3 +14,9 @@ export const convertDate = (field: AnyFieldApi, fallback?: string) => {
 };
 
 export const datePickerTheme = createTheme({ palette: { mode: "dark" } });
+
+export const buttonSx: React.CSSProperties = {
+  fontSize: "1.25rem",
+  padding: "0.5rem 2rem",
+  width: "10rem",
+};

@@ -26,7 +26,6 @@ export const Login = () => {
     error: loginError,
   } = useMutation<void, Error, { password: string }>({
     mutationFn: async ({ password }) => {
-      console.log(password);
       const isValid = await isBearerTokenValid(password);
       if (!isValid) throw new Error("Invalid password");
       setToken(password);

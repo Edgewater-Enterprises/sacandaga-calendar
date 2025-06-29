@@ -1,3 +1,4 @@
+import { EventDelete } from "@client/components/EventDelete";
 import { EventForm } from "@client/components/EventForm";
 import { EventView } from "@client/components/EventView";
 import { Login } from "@client/components/Login";
@@ -20,6 +21,8 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
 
   const editEvent = (event: TEvent) => setModalContent(<EventForm {...event} />);
 
+  const deleteEvent = (event: TEvent) => setModalContent(<EventDelete {...event} />);
+
   const showLogin = () => setModalContent(<Login />);
 
   return (
@@ -31,6 +34,7 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
         viewEvent,
         addEvent,
         editEvent,
+        deleteEvent,
         showLogin,
       }}
     >

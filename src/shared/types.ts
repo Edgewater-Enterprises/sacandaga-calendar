@@ -12,6 +12,7 @@ export type TModalContext = {
   viewEvent: (event: TEvent) => void;
   addEvent: (start?: string) => void;
   editEvent: (event: TEvent) => void;
+  deleteEvent: (event: TEvent) => void;
   showLogin: () => void;
 };
 

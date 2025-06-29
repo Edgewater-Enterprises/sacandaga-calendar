@@ -1,5 +1,5 @@
 import { Label } from "@client/components/Label";
-import { submitAddEvent, submitEditEvent } from "@client/helpers/api";
+import { invalidateEvents, submitAddEvent, submitEditEvent } from "@client/helpers/api";
 import { convertDate, datePickerTheme, getFieldError } from "@client/helpers/form";
 import { useModal } from "@client/hooks/useModal";
 import { Textarea } from "@mui/joy";
@@ -11,7 +11,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import type { TAddEvent, TEvent } from "@shared/types";
 import { useForm } from "@tanstack/react-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
 export const EventForm = ({
@@ -35,14 +35,10 @@ export const EventForm = ({
     onSubmit: async ({ value }) => handleSubmit(value),
   });
 
-  const queryClient = useQueryClient();
-  const invalidateEvents = () => queryClient.invalidateQueries({ queryKey: ["events"] });
-
   const { closeModal } = useModal();
 
   const { mutate: handleSubmit, isPending } = useMutation<void, Error, TAddEvent>({
     mutationFn: async event => {
-      console.log(event);
       if (isEdit) {
         await submitEditEvent({ id, ...event });
       } else {
@@ -51,7 +47,7 @@ export const EventForm = ({
     },
     onSuccess: async () => {
       closeModal();
-      toast.success(`Stay ${isEdit ? "Updated" : "Added"}`);
+      toast.success(`Stay ${isEdit ? "updated" : "added"}`);
     },
     onSettled: async () => await invalidateEvents(),
   });
