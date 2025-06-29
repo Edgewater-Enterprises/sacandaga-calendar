@@ -1,6 +1,5 @@
-import { injectManifest } from "workbox-build";
-
 import { HASH_REGEX, Path } from "@shared/constants";
+import { injectManifest } from "workbox-build";
 
 const outDir = Path.Public;
 

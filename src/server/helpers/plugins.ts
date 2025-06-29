@@ -1,9 +1,8 @@
 import { staticPlugin } from "@elysiajs/static";
-import { Elysia } from "elysia";
-import { helmet } from "elysia-helmet";
-
 import { indexHtml } from "@server/helpers/elysia";
 import { API_URL_DEV, API_URL_PROD, Path } from "@shared/constants";
+import { Elysia } from "elysia";
+import { helmet } from "elysia-helmet";
 
 export const plugins = new Elysia().use(
   helmet({

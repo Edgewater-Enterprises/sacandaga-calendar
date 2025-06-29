@@ -1,13 +1,20 @@
-import { useApp } from "@client/hooks/useApp";
+import { useAuth } from "@client/hooks/useAuth";
+import { useModal } from "@client/hooks/useModal";
 
 export const Header = () => {
-  const { openAddEventModal } = useApp();
+  const { addEvent, showLogin } = useModal();
+
+  const { isAdmin } = useAuth();
+
+  const onClick = isAdmin ? () => addEvent() : showLogin;
+
+  const label = isAdmin ? "add +" : "log in";
 
   return (
     <div className="header">
       <div />
-      <button type="button" className="btn" onClick={() => openAddEventModal()}>
-        add&nbsp;+
+      <button type="button" className="btn" onClick={onClick}>
+        {label}
       </button>
     </div>
   );

@@ -1,44 +1,64 @@
+import { Label } from "@client/components/Label";
+import { submitAddEvent, submitEditEvent } from "@client/helpers/api";
+import { convertDate, datePickerTheme, getFieldError } from "@client/helpers/form";
+import { useModal } from "@client/hooks/useModal";
 import { Textarea } from "@mui/joy";
 import { Button, TextField } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CircularProgress from "@mui/material/CircularProgress";
+import { ThemeProvider } from "@mui/material/styles";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import type { TAddEvent, TEvent } from "@shared/types";
 import { useForm } from "@tanstack/react-form";
-import type { AnyFieldApi } from "@tanstack/react-form";
-import dayjs from "dayjs";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
-import { Label } from "@client/components/Label";
+export const EventForm = ({
+  id,
+  title,
+  start,
+  end,
+  description,
+  background_color,
+}: Partial<TEvent>) => {
+  const isEdit = !!id;
 
-const getFieldError = (field: AnyFieldApi) => {
-  return field.state.meta.isTouched && !field.state.meta.isValid
-    ? field.state.meta.errors.join(", ")
-    : undefined;
-};
-
-const convertDate = (field: AnyFieldApi, fallback?: string) => {
-  if (!field.state.value) field.setValue(fallback || dayjs().format("YYYY-MM-DD"));
-  return dayjs(field.state.value || fallback);
-};
-
-const theme = createTheme({ palette: { mode: "dark" } });
-
-export const AddEvent = ({ start }: { start?: string }) => {
   const form = useForm({
     defaultValues: {
-      title: "",
-      start: "",
-      end: "",
-      description: "",
+      title: title ?? "",
+      start: start ?? "",
+      end: end ?? "",
+      description: description ?? "",
+      background_color: background_color ?? "#2365A1",
     },
-    onSubmit: async ({ value }) => {
-      console.log(value);
+    onSubmit: async ({ value }) => handleSubmit(value),
+  });
+
+  const queryClient = useQueryClient();
+  const invalidateEvents = () => queryClient.invalidateQueries({ queryKey: ["events"] });
+
+  const { closeModal } = useModal();
+
+  const { mutate: handleSubmit, isPending } = useMutation<void, Error, TAddEvent>({
+    mutationFn: async event => {
+      console.log(event);
+      if (isEdit) {
+        await submitEditEvent({ id, ...event });
+      } else {
+        await submitAddEvent(event);
+      }
     },
+    onSuccess: async () => {
+      closeModal();
+      toast.success(`Stay ${isEdit ? "Updated" : "Added"}`);
+    },
+    onSettled: async () => await invalidateEvents(),
   });
 
   return (
     <div className="modal-content">
-      <h1>Add Stay</h1>
+      <h1>{isEdit ? "Edit" : "Add"} Stay</h1>
       <form
         className="form-content"
         onSubmit={e => {
@@ -120,7 +140,7 @@ export const AddEvent = ({ start }: { start?: string }) => {
                 <Label htmlFor={field.name} error={error} isRequired>
                   Arrive
                 </Label>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={datePickerTheme}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       name={field.name}
@@ -155,7 +175,7 @@ export const AddEvent = ({ start }: { start?: string }) => {
                 <Label htmlFor={field.name} error={error} isRequired>
                   Depart
                 </Label>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={datePickerTheme}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       name={field.name}
@@ -205,17 +225,34 @@ export const AddEvent = ({ start }: { start?: string }) => {
             );
           }}
         </form.Field>
-        <Button
-          size="large"
-          variant="contained"
-          sx={{
-            fontSize: "1.25rem",
-            padding: "0.5rem 2rem",
-          }}
-          type="submit"
-        >
-          Add
-        </Button>
+        <div style={{ display: "flex", justifyContent: "center", columnGap: "1rem" }}>
+          <Button
+            size="large"
+            variant="outlined"
+            sx={{
+              fontSize: "1.25rem",
+              padding: "0.5rem 2rem",
+              width: "10rem",
+            }}
+            disabled={isPending}
+            onClick={closeModal}
+          >
+            Cancel
+          </Button>
+          <Button
+            size="large"
+            variant="contained"
+            sx={{
+              fontSize: "1.25rem",
+              padding: "0.5rem 2rem",
+              width: "10rem",
+            }}
+            type="submit"
+            disabled={isPending}
+          >
+            {isPending ? <CircularProgress sx={{ color: "white" }} size={36} /> : "Save"}
+          </Button>
+        </div>
       </form>
     </div>
   );

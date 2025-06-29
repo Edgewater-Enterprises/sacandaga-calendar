@@ -1,10 +1,10 @@
+import { Modal } from "@client/components/Modal";
+import { useModal } from "@client/hooks/useModal";
+import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 
-import { Modal } from "@client/components/Modal";
-import { useApp } from "@client/hooks/useApp";
-
 export const Layout = () => {
-  const { modalContent, modalProps } = useApp();
+  const { modalContent, modalProps } = useModal();
 
   return (
     <>
@@ -12,6 +12,7 @@ export const Layout = () => {
         <Outlet />
       </main>
       <Modal {...modalProps}>{modalContent}</Modal>
+      <Toaster toastOptions={{ duration: 4000 }} />
     </>
   );
 };

@@ -1,8 +1,8 @@
+import { Config } from "@client/helpers/config";
+import { useAuth } from "@client/hooks/useAuth";
+import { ErrorMessage } from "@shared/constants";
 import { eventsSchema } from "@shared/schemas";
 import { QueryClient } from "@tanstack/react-query";
-
-import { Config } from "@client/helpers/config";
-import { ErrorMessage } from "@shared/constants";
 
 export const fetchAndParseEvents = async () => {
   try {
@@ -26,11 +26,12 @@ export const fetchAndParseEvents = async () => {
 
 export const queryClient = new QueryClient();
 
-export const buildBearerAuthHeaders = (token: string) => {
+export const buildBearerAuthHeaders = (password?: string) => {
   const headers = new Headers();
-  if (!token) return headers;
+  const token = password ?? useAuth.getState().token;
+  if (!token) return { headers, token };
   headers.set("Authorization", `Bearer ${token}`);
-  return headers;
+  return { headers, token };
 };
 
 export const httpClient = {
@@ -57,13 +58,20 @@ const request = ({
   headers?: Headers;
   body?: unknown;
 }) => {
+  const requestHeaders = new Headers({
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  });
+
+  if (headers) {
+    headers.forEach((value, key) => {
+      requestHeaders.set(key, value);
+    });
+  }
+
   return fetch(url, {
     method,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      ...(headers ?? []),
-    },
+    headers: requestHeaders,
     body: body ? JSON.stringify(body) : undefined,
   });
 };

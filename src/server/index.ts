@@ -1,11 +1,10 @@
 import { existsSync } from "node:fs";
 import { createServer } from "node:http";
-import { Elysia } from "elysia";
-
 import { Config } from "@server/helpers/config";
 import { createHttpAdapter, onError } from "@server/helpers/elysia";
 import { plugins, serveStatic } from "@server/helpers/plugins";
 import { Path } from "@shared/constants";
+import { Elysia } from "elysia";
 
 const { PORT } = Config;
 
