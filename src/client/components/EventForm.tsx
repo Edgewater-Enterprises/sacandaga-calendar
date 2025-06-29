@@ -1,3 +1,4 @@
+import { ColorPicker } from "@client/components/ColorPicker";
 import { Label } from "@client/components/Label";
 import { invalidateEvents, submitAddEvent, submitEditEvent } from "@client/helpers/api";
 import { convertDate, datePickerTheme, getFieldError } from "@client/helpers/form";
@@ -9,6 +10,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { EventColor } from "@shared/constants";
 import type { TAddEvent, TEvent } from "@shared/types";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
@@ -30,7 +32,7 @@ export const EventForm = ({
       start: start ?? "",
       end: end ?? "",
       description: description ?? "",
-      background_color: background_color ?? "#2365A1",
+      background_color: background_color ?? EventColor.Blue,
     },
     onSubmit: async ({ value }) => handleSubmit(value),
   });
@@ -216,6 +218,19 @@ export const EventForm = ({
                     color: "#ffffff",
                     backgroundColor: "transparent",
                   }}
+                />
+              </div>
+            );
+          }}
+        </form.Field>
+        <form.Field name="background_color">
+          {field => {
+            return (
+              <div className="labelled-field">
+                <Label htmlFor={field.name}>Color</Label>
+                <ColorPicker
+                  initialValue={field.state.value}
+                  onChange={color => field.handleChange(color)}
                 />
               </div>
             );

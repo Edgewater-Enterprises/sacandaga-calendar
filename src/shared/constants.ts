@@ -48,7 +48,6 @@ export enum EventColor {
   Purple = "#7B1FA2",
   Red = "#C62828",
   Orange = "#A0522D",
-  Gray = "#555555",
   Teal = "#00796B",
 }
 
