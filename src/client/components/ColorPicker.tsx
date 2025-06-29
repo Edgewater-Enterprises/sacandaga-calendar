@@ -1,47 +1,26 @@
 import { EventColor } from "@shared/constants";
-import { useState } from "react";
 
 export const ColorPicker = ({
-  initialValue,
+  selectedColor,
   onChange,
 }: {
-  initialValue: EventColor;
+  selectedColor: EventColor;
   onChange: (color: EventColor) => void;
 }) => {
-  const [selectedColor, setSelectedColor] = useState(initialValue);
-
   return (
     <div className="color-picker">
       {Object.values(EventColor).map(color => (
-        <ColorButton
+        <button
           key={color}
-          color={color}
-          onClick={() => {
-            onChange(color);
-            setSelectedColor(color);
+          type="button"
+          className="color-btn"
+          onClick={() => onChange(color)}
+          style={{
+            backgroundColor: color,
+            outline: selectedColor === color ? "2px solid white" : undefined,
           }}
-          isSelected={selectedColor === color}
         />
       ))}
     </div>
-  );
-};
-
-const ColorButton = ({
-  color,
-  onClick,
-  isSelected,
-}: {
-  color: EventColor;
-  onClick: () => void;
-  isSelected: boolean;
-}) => {
-  return (
-    <button
-      type="button"
-      className="color-btn"
-      onClick={onClick}
-      style={{ backgroundColor: color, outline: isSelected ? "2px solid white" : undefined }}
-    />
   );
 };

@@ -229,7 +229,7 @@ export const EventForm = ({
               <div className="labelled-field">
                 <Label htmlFor={field.name}>Color</Label>
                 <ColorPicker
-                  initialValue={field.state.value}
+                  selectedColor={field.state.value}
                   onChange={color => field.handleChange(color)}
                 />
               </div>
