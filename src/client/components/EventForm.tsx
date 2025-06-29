@@ -1,7 +1,7 @@
 import { ColorPicker } from "@client/components/ColorPicker";
 import { Label } from "@client/components/Label";
 import { invalidateEvents, submitAddEvent, submitEditEvent } from "@client/helpers/api";
-import { convertDate, datePickerTheme, getFieldError } from "@client/helpers/form";
+import { convertDate, datePickerSx, datePickerTheme, getFieldError } from "@client/helpers/form";
 import { useModal } from "@client/hooks/useModal";
 import { Textarea } from "@mui/joy";
 import { Button, TextField } from "@mui/material";
@@ -120,76 +120,86 @@ export const EventForm = ({
             );
           }}
         </form.Field>
-        <form.Field
-          name="start"
-          validators={{
-            onChange: ({ value }) => {
-              return !value ? "Required" : undefined;
-            },
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(10rem, 1fr) minmax(10rem, 1fr)",
+            gap: "1rem",
           }}
         >
-          {field => {
-            const error = getFieldError(field);
+          <form.Field
+            name="start"
+            validators={{
+              onChange: ({ value }) => {
+                return !value ? "Required" : undefined;
+              },
+            }}
+          >
+            {field => {
+              const error = getFieldError(field);
 
-            const dateValue = convertDate(field, start);
+              const dateValue = convertDate(field, start);
 
-            return (
-              <div className="labelled-field">
-                <Label htmlFor={field.name} error={error} isRequired>
-                  Arrive
-                </Label>
-                <ThemeProvider theme={datePickerTheme}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                      name={field.name}
-                      value={dateValue}
-                      onChange={pickerDate => {
-                        const date = pickerDate ? pickerDate.format("YYYY-MM-DD") : "";
-                        field.handleChange(date);
-                      }}
-                      format="YYYY-MM-DD"
-                    />
-                  </LocalizationProvider>
-                </ThemeProvider>
-              </div>
-            );
-          }}
-        </form.Field>
-        <form.Field
-          name="end"
-          validators={{
-            onChange: ({ value }) => {
-              return !value ? "Required" : undefined;
-            },
-          }}
-        >
-          {field => {
-            const error = getFieldError(field);
+              return (
+                <div className="labelled-field">
+                  <Label htmlFor={field.name} error={error} isRequired>
+                    Arrive
+                  </Label>
+                  <ThemeProvider theme={datePickerTheme}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                        name={field.name}
+                        value={dateValue}
+                        onChange={pickerDate => {
+                          const date = pickerDate ? pickerDate.format("YYYY-MM-DD") : "";
+                          field.handleChange(date);
+                        }}
+                        format="YYYY-MM-DD"
+                        sx={datePickerSx}
+                      />
+                    </LocalizationProvider>
+                  </ThemeProvider>
+                </div>
+              );
+            }}
+          </form.Field>
+          <form.Field
+            name="end"
+            validators={{
+              onChange: ({ value }) => {
+                return !value ? "Required" : undefined;
+              },
+            }}
+          >
+            {field => {
+              const error = getFieldError(field);
 
-            const dateValue = convertDate(field, start);
+              const dateValue = convertDate(field, start);
 
-            return (
-              <div className="labelled-field">
-                <Label htmlFor={field.name} error={error} isRequired>
-                  Depart
-                </Label>
-                <ThemeProvider theme={datePickerTheme}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                      name={field.name}
-                      value={dateValue}
-                      onChange={pickerDate => {
-                        const date = pickerDate ? pickerDate.format("YYYY-MM-DD") : "";
-                        field.handleChange(date);
-                      }}
-                      format="YYYY-MM-DD"
-                    />
-                  </LocalizationProvider>
-                </ThemeProvider>
-              </div>
-            );
-          }}
-        </form.Field>
+              return (
+                <div className="labelled-field">
+                  <Label htmlFor={field.name} error={error} isRequired>
+                    Depart
+                  </Label>
+                  <ThemeProvider theme={datePickerTheme}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                        name={field.name}
+                        value={dateValue}
+                        onChange={pickerDate => {
+                          const date = pickerDate ? pickerDate.format("YYYY-MM-DD") : "";
+                          field.handleChange(date);
+                        }}
+                        format="YYYY-MM-DD"
+                        sx={datePickerSx}
+                      />
+                    </LocalizationProvider>
+                  </ThemeProvider>
+                </div>
+              );
+            }}
+          </form.Field>
+        </div>
         <form.Field
           name="description"
           validators={{
