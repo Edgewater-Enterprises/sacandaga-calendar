@@ -1,20 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { EventDelete } from "@/client/components/EventDelete";
 import { EventForm } from "@/client/components/EventForm";
 import { EventView } from "@/client/components/EventView";
 import { Login } from "@/client/components/Login";
 import { ModalContext } from "@/client/helpers/context";
-import type { TEvent, TModalProps } from "@/shared/types";
+import type { TEvent } from "@/shared/types";
 
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>();
-  const [modalProps, setModalProps] = useState<TModalProps>();
 
-  const closeModal = () => {
-    setModalContent(null);
-    setModalProps({});
-  };
+  useEffect(() => {
+    if (modalContent) setIsOpen(true);
+  }, [modalContent]);
+
+  const closeModal = () => setIsOpen(false);
+
+  const clearModal = () => setModalContent(null);
 
   const viewEvent = (event: TEvent) => setModalContent(<EventView {...event} />);
 
@@ -29,9 +32,10 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <ModalContext.Provider
       value={{
+        isOpen,
         modalContent,
-        modalProps,
         closeModal,
+        clearModal,
         viewEvent,
         addEvent,
         editEvent,
