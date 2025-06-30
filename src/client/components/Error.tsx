@@ -13,6 +13,7 @@ export const ErrorBoundary = ({ error }: { error: Error }) => {
     >
       <h1>Error!</h1>
       <div style={{ color: "red", fontFamily: "monospace" }}>{error.message}</div>
+      <a href="/">Home</a>
     </div>
   );
 };
