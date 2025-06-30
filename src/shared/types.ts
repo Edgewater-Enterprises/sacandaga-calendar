@@ -1,10 +1,6 @@
 import type { eventSchema, eventsSchema } from "@shared/schemas";
 import type { z } from "zod";
 
-export type TConfig = {
-  PORT: number;
-};
-
 export type TModalContext = {
   modalContent?: React.ReactNode;
   modalProps?: TModalProps;

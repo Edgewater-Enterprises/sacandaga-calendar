@@ -1,5 +1,3 @@
-import type { TConfig } from "@shared/types";
-
 import { author, description, license, version } from "package.json";
 
 export const API_URL_DEV = "http://localhost:5000";
@@ -16,10 +14,6 @@ export const AppInfo = {
   },
   license,
   url: "https://sacandaga.fly.dev",
-};
-
-export const DefaultConfig: TConfig = {
-  PORT: 3000,
 };
 
 export enum Env {

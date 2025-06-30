@@ -1,4 +1,3 @@
-import { Header } from "@client/components/Header";
 import { Modal } from "@client/components/Modal";
 import { useModal } from "@client/hooks/useModal";
 import { Outlet } from "@tanstack/react-router";
@@ -10,7 +9,6 @@ export const Root = () => {
 
   return (
     <>
-      <Header />
       <main className="layout">
         <Outlet />
       </main>
