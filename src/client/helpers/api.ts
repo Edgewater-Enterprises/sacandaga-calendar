@@ -6,9 +6,8 @@ import type { TAddEvent, TEvent } from "@shared/types";
 const invalidateEvents = () => queryClient.invalidateQueries({ queryKey: ["events"] });
 
 const addEvent = async (event: TAddEvent) => {
-  const { headers } = buildBearerAuthHeaders();
-
   try {
+    const { headers } = buildBearerAuthHeaders();
     await httpClient.POST(`${Config.API_URL}/event`, {
       headers,
       body: event,
@@ -19,9 +18,8 @@ const addEvent = async (event: TAddEvent) => {
 };
 
 const editEvent = async (event: TEvent) => {
-  const { headers } = buildBearerAuthHeaders();
-
   try {
+    const { headers } = buildBearerAuthHeaders();
     await httpClient.PATCH(`${Config.API_URL}/event/${event.id}`, {
       headers,
       body: event,
@@ -32,9 +30,8 @@ const editEvent = async (event: TEvent) => {
 };
 
 const deleteEvent = async (eventId: string) => {
-  const { headers } = buildBearerAuthHeaders();
-
   try {
+    const { headers } = buildBearerAuthHeaders();
     await httpClient.DELETE(`${Config.API_URL}/event/${eventId}`, {
       headers,
     });
@@ -43,23 +40,18 @@ const deleteEvent = async (eventId: string) => {
   }
 };
 
-const isBearerTokenValid = async (password?: string) => {
+const login = async (password?: string) => {
   try {
     const { headers, token } = buildBearerAuthHeaders(password);
-
     if (!token) return false;
-
-    const res = await httpClient
-      .POST(`${Config.API_URL}/login`, {
-        headers,
-      })
-      .catch(error => {
-        console.error("Failed to validate token:", error);
-      });
-    return res ? res.ok : false;
-  } catch (_error) {
+    const res = await httpClient.POST(`${Config.API_URL}/login`, {
+      headers,
+    });
+    return res.ok;
+  } catch (error) {
+    console.error("Failed to validate token:", error);
     return false;
   }
 };
 
-export const api = { invalidateEvents, addEvent, editEvent, deleteEvent, isBearerTokenValid };
+export const api = { invalidateEvents, addEvent, editEvent, deleteEvent, login };

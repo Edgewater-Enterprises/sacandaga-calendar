@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
   loader: async () => {
     const [events, isAdmin] = await Promise.all([
       queryClient.ensureQueryData(loaderQuery),
-      api.isBearerTokenValid(),
+      api.login(),
     ]);
     return { events, isAdmin };
   },
