@@ -20,6 +20,8 @@
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
     "@evilmartians/lefthook": "^1.11.13",
+    "@tanstack/react-router-devtools": "^1.123.0",
+    "@tanstack/router-plugin": "^1.123.0",
     "@types/bun": "latest",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
@@ -53,7 +55,6 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hot-toast": "^2.5.2",
-    "react-router-dom": "^7.6.1",
     "zod": "^3.25.47",
     "zustand": "^5.0.6"
   }
