@@ -41,7 +41,7 @@ export const Login = () => {
   return (
     <div className="modal-content">
       <h1>Log In</h1>
-      <p>Logging in allows you to add, edit, and delete stays.</p>
+      <p style={{ margin: "1rem 0" }}>Log in to add, edit, and delete stays.</p>
       <form
         className="form-content"
         onSubmit={e => {
