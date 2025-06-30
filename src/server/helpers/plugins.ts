@@ -1,8 +1,8 @@
 import { existsSync } from "node:fs";
 import { staticPlugin } from "@elysiajs/static";
-import { API_URL_DEV, API_URL_PROD, Path } from "@shared/constants";
 import { Elysia } from "elysia";
 import { helmet } from "elysia-helmet";
+import { API_URL_DEV, API_URL_PROD, Path } from "@/shared/constants";
 
 export const plugins = new Elysia().use(
   helmet({

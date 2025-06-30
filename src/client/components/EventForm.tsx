@@ -1,8 +1,3 @@
-import { ColorPicker } from "@client/components/ColorPicker";
-import { Label } from "@client/components/Label";
-import { api } from "@client/helpers/api";
-import { convertDate, datePickerTheme, getFieldError } from "@client/helpers/form";
-import { useModal } from "@client/hooks/useModal";
 import { Textarea } from "@mui/joy";
 import { Button, TextField } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -10,11 +5,17 @@ import { ThemeProvider } from "@mui/material/styles";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { EventColor } from "@shared/constants";
-import type { TAddEvent, TEvent } from "@shared/types";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+
+import { ColorPicker } from "@/client/components/ColorPicker";
+import { Label } from "@/client/components/Label";
+import { api } from "@/client/helpers/api";
+import { convertDate, datePickerTheme, getFieldError } from "@/client/helpers/form";
+import { useModal } from "@/client/hooks/useModal";
+import { EventColor } from "@/shared/constants";
+import type { TAddEvent, TEvent } from "@/shared/types";
 
 export const EventForm = ({
   id,

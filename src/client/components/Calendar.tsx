@@ -1,9 +1,10 @@
-import { useApi } from "@client/hooks/useApi";
-import { useAuth } from "@client/hooks/useAuth";
-import { useModal } from "@client/hooks/useModal";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from "@fullcalendar/react";
+
+import { useApi } from "@/client/hooks/useApi";
+import { useAuth } from "@/client/hooks/useAuth";
+import { useModal } from "@/client/hooks/useModal";
 
 export const Calendar = () => {
   const { events } = useApi();

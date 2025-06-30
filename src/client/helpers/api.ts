@@ -1,7 +1,7 @@
-import { Config } from "@client/helpers/config";
-import { buildBearerAuthHeaders, httpClient, queryClient } from "@client/helpers/http";
-import { ErrorMessage } from "@shared/constants";
-import type { TAddEvent, TEvent } from "@shared/types";
+import { Config } from "@/client/helpers/config";
+import { buildBearerAuthHeaders, httpClient, queryClient } from "@/client/helpers/http";
+import { ErrorMessage } from "@/shared/constants";
+import type { TAddEvent, TEvent } from "@/shared/types";
 
 const invalidateEvents = () => queryClient.invalidateQueries({ queryKey: ["events"] });
 

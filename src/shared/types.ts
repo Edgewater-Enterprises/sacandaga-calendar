@@ -1,5 +1,6 @@
-import type { eventSchema, eventsSchema } from "@shared/schemas";
 import type { z } from "zod";
+
+import type { eventSchema, eventsSchema } from "@/shared/schemas";
 
 export type TModalContext = {
   modalContent?: React.ReactNode;

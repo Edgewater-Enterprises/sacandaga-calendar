@@ -1,12 +1,13 @@
-import { Label } from "@client/components/Label";
-import { api } from "@client/helpers/api";
-import { getFieldError } from "@client/helpers/form";
-import { useAuth } from "@client/hooks/useAuth";
-import { useModal } from "@client/hooks/useModal";
 import { Button, CircularProgress, TextField } from "@mui/material";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+
+import { Label } from "@/client/components/Label";
+import { api } from "@/client/helpers/api";
+import { getFieldError } from "@/client/helpers/form";
+import { useAuth } from "@/client/hooks/useAuth";
+import { useModal } from "@/client/hooks/useModal";
 
 export const Login = () => {
   const form = useForm({

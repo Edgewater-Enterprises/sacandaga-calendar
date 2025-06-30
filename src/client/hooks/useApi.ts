@@ -1,9 +1,10 @@
-import { fetchAndParseEvents } from "@client/helpers/http";
-import { useAuth } from "@client/hooks/useAuth";
-import { ErrorMessage } from "@shared/constants";
 import { useQuery } from "@tanstack/react-query";
 import { getRouteApi } from "@tanstack/react-router";
 import { useEffect } from "react";
+
+import { fetchAndParseEvents } from "@/client/helpers/http";
+import { useAuth } from "@/client/hooks/useAuth";
+import { ErrorMessage } from "@/shared/constants";
 
 export const loaderQuery = { queryKey: ["events"], queryFn: fetchAndParseEvents };
 

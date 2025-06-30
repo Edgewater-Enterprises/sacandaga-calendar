@@ -1,4 +1,4 @@
-import { EventColor } from "@shared/constants";
+import { EventColor } from "@/shared/constants";
 
 export const ColorPicker = ({
   selectedColor,

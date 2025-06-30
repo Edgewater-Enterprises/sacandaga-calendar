@@ -1,10 +1,11 @@
-import { EventDelete } from "@client/components/EventDelete";
-import { EventForm } from "@client/components/EventForm";
-import { EventView } from "@client/components/EventView";
-import { Login } from "@client/components/Login";
-import { ModalContext } from "@client/contexts/modal";
-import type { TEvent, TModalProps } from "@shared/types";
 import { useState } from "react";
+
+import { EventDelete } from "@/client/components/EventDelete";
+import { EventForm } from "@/client/components/EventForm";
+import { EventView } from "@/client/components/EventView";
+import { Login } from "@/client/components/Login";
+import { ModalContext } from "@/client/helpers/context";
+import type { TEvent, TModalProps } from "@/shared/types";
 
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [modalContent, setModalContent] = useState<React.ReactNode>();

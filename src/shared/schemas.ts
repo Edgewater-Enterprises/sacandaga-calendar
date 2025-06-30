@@ -1,5 +1,6 @@
-import { EventColor } from "@shared/constants";
 import { z } from "zod";
+
+import { EventColor } from "@/shared/constants";
 
 export const eventSchema = z.object({
   id: z.string(),

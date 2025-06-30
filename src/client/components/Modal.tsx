@@ -1,8 +1,9 @@
-import { useModal } from "@client/hooks/useModal";
 import CloseIcon from "@mui/icons-material/Close";
 import { IconButton, Modal as MuiModal, Zoom } from "@mui/material";
-import type { TModalProps } from "@shared/types";
 import { useEffect, useState } from "react";
+
+import { useModal } from "@/client/hooks/useModal";
+import type { TModalProps } from "@/shared/types";
 
 export const Modal = ({ onClose, showCloseBtn = true }: TModalProps) => {
   const [isZoomed, setIsZoomed] = useState(true);

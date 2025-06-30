@@ -1,7 +1,7 @@
-import { Config } from "@server/helpers/config";
-import { onError } from "@server/helpers/error";
-import { plugins } from "@server/helpers/plugins";
 import { Elysia } from "elysia";
+import { Config } from "@/server/helpers/config";
+import { onError } from "@/server/helpers/error";
+import { plugins } from "@/server/helpers/plugins";
 
 const { PORT } = Config;
 

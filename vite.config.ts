@@ -1,11 +1,12 @@
 import { resolve } from "node:path";
-import { AppInfo, Env, Path } from "@shared/constants";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+import { AppInfo, Env, Path } from "@/shared/constants";
 
 const root = Path.ClientSrc;
 const outDir = Path.Public;

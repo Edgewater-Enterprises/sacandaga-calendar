@@ -1,5 +1,5 @@
-import { Config } from "@client/helpers/config";
-import { HASH_REGEX } from "@shared/constants";
+import { Config } from "@/client/helpers/config";
+import { HASH_REGEX } from "@/shared/constants";
 
 declare const self: ServiceWorkerGlobalScope & {
   __WB_DISABLE_DEV_LOGS: boolean;

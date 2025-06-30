@@ -1,4 +1,4 @@
-import { API_URL_DEV, API_URL_PROD, Env } from "@shared/constants";
+import { API_URL_DEV, API_URL_PROD, Env } from "@/shared/constants";
 
 const isLocal =
   self.location.hostname === "localhost" ||

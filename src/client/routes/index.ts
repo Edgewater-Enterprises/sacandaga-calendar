@@ -1,8 +1,9 @@
-import { Home } from "@client/components/Home";
-import { api } from "@client/helpers/api";
-import { queryClient } from "@client/helpers/http";
-import { loaderQuery } from "@client/hooks/useApi";
 import { createFileRoute } from "@tanstack/react-router";
+
+import { Home } from "@/client/components/Home";
+import { api } from "@/client/helpers/api";
+import { queryClient } from "@/client/helpers/http";
+import { loaderQuery } from "@/client/hooks/useApi";
 
 export const Route = createFileRoute("/")({
   component: Home,

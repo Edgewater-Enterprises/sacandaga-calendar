@@ -1,4 +1,4 @@
-import { Config } from "@client/helpers/config";
+import { Config } from "@/client/helpers/config";
 
 export const assertGetElementById = (id: string) => {
   const element = document.getElementById(id);

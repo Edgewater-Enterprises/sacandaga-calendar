@@ -1,11 +1,12 @@
-import { ModalProvider } from "@client/components/ModalProvider";
-import { assertGetElementById, registerServiceWorker } from "@client/helpers/browser";
-import { queryClient } from "@client/helpers/http";
-import { routeTree } from "@client/routes/routeTree.gen";
 import { type QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+
+import { ModalProvider } from "@/client/components/ModalProvider";
+import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
+import { queryClient } from "@/client/helpers/http";
+import { routeTree } from "@/client/routes/routeTree.gen";
 
 window.addEventListener("load", () => {
   registerServiceWorker().catch(error => {

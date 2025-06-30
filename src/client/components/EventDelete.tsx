@@ -1,10 +1,11 @@
-import { api } from "@client/helpers/api";
-import { useModal } from "@client/hooks/useModal";
 import { Button } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import type { TEvent } from "@shared/types";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+
+import { api } from "@/client/helpers/api";
+import { useModal } from "@/client/hooks/useModal";
+import type { TEvent } from "@/shared/types";
 
 export const EventDelete = ({ id, title }: TEvent) => {
   const { closeModal } = useModal();

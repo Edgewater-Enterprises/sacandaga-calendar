@@ -1,8 +1,8 @@
-import { buttonSx } from "@client/helpers/form";
-import { useAuth } from "@client/hooks/useAuth";
-import { useModal } from "@client/hooks/useModal";
 import { Button } from "@mui/material";
-import type { TEvent } from "@shared/types";
+import { buttonSx } from "@/client/helpers/form";
+import { useAuth } from "@/client/hooks/useAuth";
+import { useModal } from "@/client/hooks/useModal";
+import type { TEvent } from "@/shared/types";
 
 export const EventView = (event: TEvent) => {
   const { title, start, end, description } = event;

@@ -1,5 +1,5 @@
-import { useAuth } from "@client/hooks/useAuth";
-import { useModal } from "@client/hooks/useModal";
+import { useAuth } from "@/client/hooks/useAuth";
+import { useModal } from "@/client/hooks/useModal";
 
 export const Header = () => {
   const { addEvent, showLogin } = useModal();

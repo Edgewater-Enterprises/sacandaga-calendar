@@ -1,8 +1,9 @@
-import { Config } from "@client/helpers/config";
-import { useAuth } from "@client/hooks/useAuth";
-import { ErrorMessage } from "@shared/constants";
-import { eventsSchema } from "@shared/schemas";
 import { QueryClient } from "@tanstack/react-query";
+
+import { Config } from "@/client/helpers/config";
+import { useAuth } from "@/client/hooks/useAuth";
+import { ErrorMessage } from "@/shared/constants";
+import { eventsSchema } from "@/shared/schemas";
 
 export const queryClient = new QueryClient();
 
