@@ -38,9 +38,9 @@ docker run -p 3000:3000 sacandaga
 ## Stack
 
 - [Bun](https://bun.sh) - server runtime, package manager, script runner
-- [Elysia](https://elysiajs.com) - web framework
+- [Elysia](https://elysiajs.com) - server framework
 - [React](https://react.dev) - user interface
-- [React Router](https://reactrouter.com) - client-side routing
+- [TanStack Router](https://tanstack.com/router) - client-side routing
 - [TanStack Query](https://tanstack.com/query) - async state management
 - [TypeScript](https://www.typescriptlang.org), [Biome](https://biomejs.dev), [Lefthook](https://lefthook.dev) - code quality/style
 - [Vite](https://vite.dev) - dev server, bundler
