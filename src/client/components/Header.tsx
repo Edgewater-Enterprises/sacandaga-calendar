@@ -11,11 +11,11 @@ export const Header = () => {
   const label = isAdmin ? "add +" : "log in";
 
   return (
-    <div className="header">
+    <header className="header">
       <div />
       <button type="button" className="btn" onClick={onClick}>
         {label}
       </button>
-    </div>
+    </header>
   );
 };

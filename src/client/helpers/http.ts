@@ -4,6 +4,8 @@ import { ErrorMessage } from "@shared/constants";
 import { eventsSchema } from "@shared/schemas";
 import { QueryClient } from "@tanstack/react-query";
 
+export const queryClient = new QueryClient();
+
 export const fetchAndParseEvents = async () => {
   try {
     const res = await httpClient.GET(`${Config.API_URL}/event`);
@@ -23,8 +25,6 @@ export const fetchAndParseEvents = async () => {
     throw new Error(ErrorMessage.LoadEventData);
   }
 };
-
-export const queryClient = new QueryClient();
 
 export const buildBearerAuthHeaders = (password?: string) => {
   const headers = new Headers();

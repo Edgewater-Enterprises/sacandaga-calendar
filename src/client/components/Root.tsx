@@ -9,9 +9,7 @@ export const Root = () => {
 
   return (
     <>
-      <main className="layout">
-        <Outlet />
-      </main>
+      <Outlet />
       <Modal {...modalProps}>{modalContent}</Modal>
       <Toaster toastOptions={{ duration: 4000 }} />
       <TanStackRouterDevtools />
