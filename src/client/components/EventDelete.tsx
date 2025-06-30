@@ -16,6 +16,7 @@ export const EventDelete = ({ id, title }: TEvent) => {
       closeModal();
       toast.success("Stay deleted");
     },
+    onError: error => toast.error(error.message),
     onSettled: async () => await api.invalidateEvents(),
   });
 

@@ -12,7 +12,8 @@ const addEvent = async (event: TAddEvent) => {
       headers,
       body: event,
     });
-  } catch (_error) {
+  } catch (error) {
+    console.error("Failed to add event:", error);
     throw new Error(ErrorMessage.AddEvent);
   }
 };
@@ -24,7 +25,8 @@ const editEvent = async (event: TEvent) => {
       headers,
       body: event,
     });
-  } catch (_error) {
+  } catch (error) {
+    console.error("Failed to edit event:", error);
     throw new Error(ErrorMessage.EditEvent);
   }
 };
@@ -35,7 +37,8 @@ const deleteEvent = async (eventId: string) => {
     await httpClient.DELETE(`${Config.API_URL}/event/${eventId}`, {
       headers,
     });
-  } catch (_error) {
+  } catch (error) {
+    console.error("Failed to delete event:", error);
     throw new Error(ErrorMessage.DeleteEvent);
   }
 };

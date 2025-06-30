@@ -52,6 +52,7 @@ export const EventForm = ({
       closeModal();
       toast.success(`Stay ${isEdit ? "updated" : "added"}`);
     },
+    onError: error => toast.error(error.message),
     onSettled: async () => await api.invalidateEvents(),
   });
 
