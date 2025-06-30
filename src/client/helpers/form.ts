@@ -20,7 +20,3 @@ export const buttonSx: React.CSSProperties = {
   padding: "0.5rem 2rem",
   width: "10rem",
 };
-
-export const datePickerSx: React.CSSProperties = {
-  width: "100%",
-};

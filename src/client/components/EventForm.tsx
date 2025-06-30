@@ -1,7 +1,7 @@
 import { ColorPicker } from "@client/components/ColorPicker";
 import { Label } from "@client/components/Label";
 import { api } from "@client/helpers/api";
-import { convertDate, datePickerSx, datePickerTheme, getFieldError } from "@client/helpers/form";
+import { convertDate, datePickerTheme, getFieldError } from "@client/helpers/form";
 import { useModal } from "@client/hooks/useModal";
 import { Textarea } from "@mui/joy";
 import { Button, TextField } from "@mui/material";
@@ -89,9 +89,11 @@ export const EventForm = ({
                   spellCheck={false}
                   autoComplete="off"
                   sx={{
+                    minWidth: "19rem",
                     width: "100%",
                     "& .MuiInputBase-input": {
                       color: "#ffffff",
+                      padding: "14px",
                     },
                     "& .MuiInputLabel-root": {
                       color: "#cdd7e1",
@@ -123,7 +125,7 @@ export const EventForm = ({
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(10rem, 1fr) minmax(10rem, 1fr)",
+            gridTemplateColumns: "minmax(9rem, 1fr) minmax(9rem, 1fr)",
             gap: "1rem",
           }}
         >
@@ -155,7 +157,6 @@ export const EventForm = ({
                           field.handleChange(date);
                         }}
                         format="YYYY-MM-DD"
-                        sx={datePickerSx}
                       />
                     </LocalizationProvider>
                   </ThemeProvider>
@@ -191,7 +192,6 @@ export const EventForm = ({
                           field.handleChange(date);
                         }}
                         format="YYYY-MM-DD"
-                        sx={datePickerSx}
                       />
                     </LocalizationProvider>
                   </ThemeProvider>
@@ -225,8 +225,11 @@ export const EventForm = ({
                   minRows={4}
                   maxRows={4}
                   sx={{
+                    width: "100%",
+                    minWidth: "19rem",
                     color: "#ffffff",
                     backgroundColor: "transparent",
+                    padding: "14px",
                   }}
                 />
               </div>
@@ -246,7 +249,14 @@ export const EventForm = ({
             );
           }}
         </form.Field>
-        <div style={{ display: "flex", justifyContent: "center", columnGap: "1rem" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            columnGap: "1rem",
+            minWidth: "19rem",
+          }}
+        >
           <Button
             size="large"
             variant="outlined"
