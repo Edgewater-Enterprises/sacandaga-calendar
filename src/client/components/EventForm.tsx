@@ -1,6 +1,6 @@
 import { ColorPicker } from "@client/components/ColorPicker";
 import { Label } from "@client/components/Label";
-import { invalidateEvents, submitAddEvent, submitEditEvent } from "@client/helpers/api";
+import { api } from "@client/helpers/api";
 import { convertDate, datePickerSx, datePickerTheme, getFieldError } from "@client/helpers/form";
 import { useModal } from "@client/hooks/useModal";
 import { Textarea } from "@mui/joy";
@@ -42,16 +42,16 @@ export const EventForm = ({
   const { mutate: handleSubmit, isPending } = useMutation<void, Error, TAddEvent>({
     mutationFn: async event => {
       if (isEdit) {
-        await submitEditEvent({ id, ...event });
+        await api.editEvent({ id, ...event });
       } else {
-        await submitAddEvent(event);
+        await api.addEvent(event);
       }
     },
     onSuccess: async () => {
       closeModal();
       toast.success(`Stay ${isEdit ? "updated" : "added"}`);
     },
-    onSettled: async () => await invalidateEvents(),
+    onSettled: async () => await api.invalidateEvents(),
   });
 
   return (

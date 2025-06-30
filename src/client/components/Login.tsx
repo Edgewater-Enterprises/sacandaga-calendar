@@ -1,5 +1,5 @@
 import { Label } from "@client/components/Label";
-import { isBearerTokenValid } from "@client/helpers/api";
+import { api } from "@client/helpers/api";
 import { getFieldError } from "@client/helpers/form";
 import { useAuth } from "@client/hooks/useAuth";
 import { useModal } from "@client/hooks/useModal";
@@ -26,7 +26,7 @@ export const Login = () => {
     error: loginError,
   } = useMutation<void, Error, { password: string }>({
     mutationFn: async ({ password }) => {
-      const isValid = await isBearerTokenValid(password);
+      const isValid = await api.isBearerTokenValid(password);
       if (!isValid) throw new Error("Invalid password");
       setToken(password);
     },

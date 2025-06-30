@@ -1,4 +1,4 @@
-import { invalidateEvents, submitDeleteEvent } from "@client/helpers/api";
+import { api } from "@client/helpers/api";
 import { useModal } from "@client/hooks/useModal";
 import { Button } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -10,12 +10,12 @@ export const EventDelete = ({ id, title }: TEvent) => {
   const { closeModal } = useModal();
 
   const { mutate: handleDelete, isPending } = useMutation({
-    mutationFn: async () => await submitDeleteEvent(id),
+    mutationFn: async () => await api.deleteEvent(id),
     onSuccess: async () => {
       closeModal();
       toast.success("Stay deleted");
     },
-    onSettled: async () => await invalidateEvents(),
+    onSettled: async () => await api.invalidateEvents(),
   });
 
   return (

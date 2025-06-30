@@ -3,9 +3,9 @@ import { buildBearerAuthHeaders, httpClient, queryClient } from "@client/helpers
 import { ErrorMessage } from "@shared/constants";
 import type { TAddEvent, TEvent } from "@shared/types";
 
-export const invalidateEvents = () => queryClient.invalidateQueries({ queryKey: ["events"] });
+const invalidateEvents = () => queryClient.invalidateQueries({ queryKey: ["events"] });
 
-export const submitAddEvent = async (event: TAddEvent) => {
+const addEvent = async (event: TAddEvent) => {
   const { headers } = buildBearerAuthHeaders();
 
   try {
@@ -18,7 +18,7 @@ export const submitAddEvent = async (event: TAddEvent) => {
   }
 };
 
-export const submitEditEvent = async (event: TEvent) => {
+const editEvent = async (event: TEvent) => {
   const { headers } = buildBearerAuthHeaders();
 
   try {
@@ -31,7 +31,7 @@ export const submitEditEvent = async (event: TEvent) => {
   }
 };
 
-export const submitDeleteEvent = async (eventId: string) => {
+const deleteEvent = async (eventId: string) => {
   const { headers } = buildBearerAuthHeaders();
 
   try {
@@ -43,7 +43,7 @@ export const submitDeleteEvent = async (eventId: string) => {
   }
 };
 
-export const isBearerTokenValid = async (password?: string) => {
+const isBearerTokenValid = async (password?: string) => {
   try {
     const { headers, token } = buildBearerAuthHeaders(password);
 
@@ -61,3 +61,5 @@ export const isBearerTokenValid = async (password?: string) => {
     return false;
   }
 };
+
+export const api = { invalidateEvents, addEvent, editEvent, deleteEvent, isBearerTokenValid };
