@@ -2,37 +2,47 @@
 
 Calendar app for coordinating stays at our family lake house.
 
-## Development
+### Setup
 
-Install [Bun](https://bun.sh).
+1. Install [Git](https://git-scm.com/downloads), [Bun](https://bun.sh/docs/installation), and optionally [Docker](https://docs.docker.com/get-docker) (useful for testing production builds locally)
 
-Install dependencies and launch:
+2. Clone this repository and install dependencies:
 
 ```bash
+git clone https://github.com/Sacandaga/sacandaga-calendar.git
+cd sacandaga-calendar
 bun install
-bun run dev
 ```
 
-## Production
+### Local Development
 
-Build client and compile server to standalone binary:
+Run the Elysia backend and Vite dev server concurrently:
+
+```bash
+bun dev
+```
+
+### Production Build
+
+**Option 1:** Bundle client and start server:
+
+```bash
+bun bundle
+bun start
+```
+
+**Option 2:** Build app and run standalone binary:
 
 ```bash
 bun run build
-bun run compile
+./main
 ```
 
-Start server by executing the compiled `main` binary or by running:
+**Option 3:** Build Docker image and run in container:
 
 ```bash
-bun run start
-```
-
-Alternatively, build and run in a Docker container:
-
-```bash
-docker build -t sacandaga .
-docker run -p 3000:3000 sacandaga
+docker build -t sacandaga-calendar .
+docker run -p 3000:3000 sacandaga-calendar
 ```
 
 ## Stack
