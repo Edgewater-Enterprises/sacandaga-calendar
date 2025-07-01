@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { api } from "@/client/helpers/api";
+import { buttonSx } from "@/client/helpers/form";
 import { useModal } from "@/client/hooks/useModal";
 import type { TEvent } from "@/shared/types";
 
@@ -29,11 +30,7 @@ export const EventDelete = ({ id, title }: TEvent) => {
         <Button
           size="large"
           variant="outlined"
-          sx={{
-            fontSize: "1.25rem",
-            padding: "0.5rem 2rem",
-            width: "10rem",
-          }}
+          sx={buttonSx}
           disabled={isPending}
           onClick={closeModal}
         >
@@ -42,12 +39,7 @@ export const EventDelete = ({ id, title }: TEvent) => {
         <Button
           size="large"
           variant="contained"
-          sx={{
-            fontSize: "1.25rem",
-            padding: "0.5rem 2rem",
-            backgroundColor: "red",
-            width: "10rem",
-          }}
+          sx={{ backgroundColor: "red", ...buttonSx }}
           disabled={isPending}
           onClick={() => handleDelete()}
         >

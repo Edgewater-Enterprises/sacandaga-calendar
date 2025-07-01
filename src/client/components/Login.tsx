@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 import { Label } from "@/client/components/Label";
 import { api } from "@/client/helpers/api";
-import { getFieldError } from "@/client/helpers/form";
+import { buttonSx, getFieldError, textFieldSx } from "@/client/helpers/form";
 import { useAuth } from "@/client/hooks/useAuth";
 import { useModal } from "@/client/hooks/useModal";
 
@@ -73,33 +73,7 @@ export const Login = () => {
                   variant="outlined"
                   spellCheck={false}
                   autoComplete="off"
-                  sx={{
-                    width: "100%",
-                    "& .MuiInputBase-input": {
-                      color: "#ffffff",
-                    },
-                    "& .MuiInputLabel-root": {
-                      color: "#cdd7e1",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
-                      color: "#ffffff",
-                    },
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": {
-                        borderColor: "#cdd7e1",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "#cdd7e1",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "#0b6bcb",
-                      },
-                    },
-                    "& .MuiInputBase-input::placeholder": {
-                      color: "#acafb4",
-                      opacity: 1,
-                    },
-                  }}
+                  sx={textFieldSx}
                 />
               </div>
             );
@@ -109,27 +83,13 @@ export const Login = () => {
           <Button
             size="large"
             variant="outlined"
-            sx={{
-              fontSize: "1.25rem",
-              padding: "0.5rem 2rem",
-              width: "10rem",
-            }}
+            sx={buttonSx}
             disabled={isPending}
             onClick={closeModal}
           >
             Cancel
           </Button>
-          <Button
-            size="large"
-            variant="contained"
-            sx={{
-              fontSize: "1.25rem",
-              padding: "0.5rem 2rem",
-              width: "10rem",
-            }}
-            type="submit"
-            disabled={isPending}
-          >
+          <Button size="large" variant="contained" sx={buttonSx} type="submit" disabled={isPending}>
             {isPending ? <CircularProgress sx={{ color: "white" }} size={36} /> : "Submit"}
           </Button>
         </div>
