@@ -14,6 +14,7 @@ export const useAuth = create<TAuth>()(
     {
       name: "auth-store",
       storage: createJSONStorage(() => localStorage),
+      partialize: state => ({ token: state.token }),
     },
   ),
 );
