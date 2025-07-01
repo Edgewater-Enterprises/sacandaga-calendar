@@ -9,12 +9,11 @@ export const Modal = ({ onClose }: { onClose?: () => void }) => {
   const { isOpen, modalContent, closeModal, clearModal } = useModal();
 
   useEffect(() => {
-    if (isOpen) return;
+    if (isOpen) return setIsZoomed(true);
     setIsZoomed(false);
     const timeout = setTimeout(() => {
       onClose?.();
       clearModal();
-      setIsZoomed(true);
     }, 150);
     return () => clearTimeout(timeout);
   }, [isOpen, onClose, clearModal]);
