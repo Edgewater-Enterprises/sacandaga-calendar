@@ -79,7 +79,14 @@ export const Login = () => {
             );
           }}
         </form.Field>
-        <div style={{ display: "flex", justifyContent: "center", columnGap: "1rem" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            columnGap: "1rem",
+            minWidth: "19rem",
+          }}
+        >
           <Button
             size="large"
             variant="outlined"

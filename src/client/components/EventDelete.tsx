@@ -25,8 +25,15 @@ export const EventDelete = ({ id, title }: TEvent) => {
     <div className="modal-content">
       <h1>Delete Stay</h1>
       <p>{title}</p>
-      <p>Are you sure you want to delete this stay?</p>
-      <div style={{ display: "flex", columnGap: "1rem", marginTop: "1rem" }}>
+      <p style={{ minWidth: "19rem" }}>Are you sure you want to delete this stay?</p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          columnGap: "1rem",
+          minWidth: "19rem",
+        }}
+      >
         <Button
           size="large"
           variant="outlined"
