@@ -14,6 +14,7 @@ COPY --link . .
 RUN bun run biome ci . && \
   bun run tsc && \
   bun run build && \
+  bun run compile && \
   chmod +x ./main
 
 FROM gcr.io/distroless/base
