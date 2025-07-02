@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getRouteApi } from "@tanstack/react-router";
 import { useEffect } from "react";
 
@@ -9,7 +9,7 @@ import { ErrorMessage } from "@/shared/constants";
 export const loaderQuery = { queryKey: ["events"], queryFn: fetchAndParseEvents };
 
 export const useApi = () => {
-  const { data: events } = useQuery({ staleTime: 1000, ...loaderQuery });
+  const { data: events } = useSuspenseQuery(loaderQuery);
   if (!events) throw new Error(ErrorMessage.LoadEventData);
 
   const { isAdmin } = getRouteApi("/").useLoaderData();
