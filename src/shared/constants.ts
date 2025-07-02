@@ -45,8 +45,6 @@ export enum EventColor {
   Teal = "#00796B",
 }
 
-export const STORED_STATE_PREFIX = "state";
-
 export const HASH_PREFIX = "~";
 
 export const HASH_REGEX = new RegExp(`${HASH_PREFIX}.{8}\\.[a-zA-Z0-9]+$`);
