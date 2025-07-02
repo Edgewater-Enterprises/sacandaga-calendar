@@ -1,9 +1,30 @@
 import { Config } from "@/client/helpers/config";
 import { buildBearerAuthHeaders, httpClient, queryClient } from "@/client/helpers/http";
 import { ErrorMessage } from "@/shared/constants";
+import { eventsSchema } from "@/shared/schemas";
 import type { TAddEvent, TEvent } from "@/shared/types";
 
 const invalidateEvents = () => queryClient.invalidateQueries({ queryKey: ["events"] });
+
+const fetchAndParseEvents = async () => {
+  try {
+    const res = await httpClient.GET(`${Config.API_URL}/event`);
+
+    if (!res.ok) {
+      console.error("Bad response fetching events:");
+      throw res;
+    }
+
+    const unparsedEvents = await res.json();
+
+    const events = await eventsSchema.parseAsync(unparsedEvents);
+
+    return events;
+  } catch (error) {
+    console.error(error);
+    throw new Error(ErrorMessage.LoadEventData);
+  }
+};
 
 const addEvent = async (event: TAddEvent) => {
   try {
@@ -43,9 +64,9 @@ const deleteEvent = async (eventId: string) => {
   }
 };
 
-const login = async (password?: string) => {
+const login = async () => {
   try {
-    const { headers, token } = buildBearerAuthHeaders(password);
+    const { headers, token } = buildBearerAuthHeaders();
     if (!token) return false;
     const res = await httpClient.POST(`${Config.API_URL}/login`, {
       headers,
@@ -57,4 +78,15 @@ const login = async (password?: string) => {
   }
 };
 
-export const api = { invalidateEvents, addEvent, editEvent, deleteEvent, login };
+export const api = {
+  invalidateEvents,
+  fetchAndParseEvents,
+  addEvent,
+  editEvent,
+  deleteEvent,
+  login,
+};
+
+export const eventsQuery = { queryKey: ["events"], queryFn: fetchAndParseEvents };
+
+export const isAdminQuery = { queryKey: ["isAdmin"], queryFn: login };

@@ -1,10 +1,11 @@
-import { useAuth } from "@/client/hooks/useAuth";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { isAdminQuery } from "@/client/helpers/api";
 import { useModal } from "@/client/hooks/useModal";
 
 export const Header = () => {
-  const { addEvent, showLogin } = useModal();
+  const { data: isAdmin } = useSuspenseQuery(isAdminQuery);
 
-  const { isAdmin } = useAuth();
+  const { addEvent, showLogin } = useModal();
 
   const onClick = isAdmin ? () => addEvent() : showLogin;
 

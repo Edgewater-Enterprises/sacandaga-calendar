@@ -23,6 +23,4 @@ export type TAddEvent = Omit<TEvent, "id">;
 export type TAuth = {
   token: string | null;
   setToken: (token: string) => void;
-  isAdmin: boolean;
-  setIsAdmin: (isAdmin: boolean) => void;
 };

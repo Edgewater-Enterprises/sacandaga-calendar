@@ -1,37 +1,11 @@
 import { QueryClient } from "@tanstack/react-query";
 
-import { Config } from "@/client/helpers/config";
-import { useAuth } from "@/client/hooks/useAuth";
-import { ErrorMessage } from "@/shared/constants";
-import { eventsSchema } from "@/shared/schemas";
-
 export const queryClient = new QueryClient();
 
-export const fetchAndParseEvents = async () => {
-  try {
-    const res = await httpClient.GET(`${Config.API_URL}/event`);
-
-    if (!res.ok) {
-      console.error("Bad response fetching events:");
-      throw res;
-    }
-
-    const unparsedEvents = await res.json();
-
-    const events = await eventsSchema.parseAsync(unparsedEvents);
-
-    return events;
-  } catch (error) {
-    console.error(error);
-    throw new Error(ErrorMessage.LoadEventData);
-  }
-};
-
-export const buildBearerAuthHeaders = (password?: string) => {
+export const buildBearerAuthHeaders = () => {
   const headers = new Headers();
-  const token = password ?? useAuth.getState().token;
-  if (!token) return { headers, token };
-  headers.set("Authorization", `Bearer ${token}`);
+  const token = localStorage.getItem("auth-token");
+  if (token) headers.set("Authorization", `Bearer ${token}`);
   return { headers, token };
 };
 

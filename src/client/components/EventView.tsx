@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
+import { useSuspenseQuery } from "@tanstack/react-query";
+
+import { isAdminQuery } from "@/client/helpers/api";
 import { buttonSx } from "@/client/helpers/form";
-import { useAuth } from "@/client/hooks/useAuth";
 import { useModal } from "@/client/hooks/useModal";
 import type { TEvent } from "@/shared/types";
 
@@ -9,7 +11,7 @@ export const EventView = (event: TEvent) => {
 
   const { editEvent, deleteEvent } = useModal();
 
-  const { isAdmin } = useAuth();
+  const { data: isAdmin } = useSuspenseQuery(isAdminQuery);
 
   return (
     <div className="modal-content">

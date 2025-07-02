@@ -1,15 +1,14 @@
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from "@fullcalendar/react";
-
-import { useApi } from "@/client/hooks/useApi";
-import { useAuth } from "@/client/hooks/useAuth";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { eventsQuery, isAdminQuery } from "@/client/helpers/api";
 import { useModal } from "@/client/hooks/useModal";
 
 export const Calendar = () => {
-  const { events } = useApi();
+  const { data: events } = useSuspenseQuery(eventsQuery);
 
-  const { isAdmin } = useAuth();
+  const { data: isAdmin } = useSuspenseQuery(isAdminQuery);
 
   const { viewEvent, addEvent } = useModal();
 

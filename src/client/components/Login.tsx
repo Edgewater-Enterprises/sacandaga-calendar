@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { Label } from "@/client/components/Label";
 import { api } from "@/client/helpers/api";
 import { buttonSx, getFieldError, textFieldSx } from "@/client/helpers/form";
-import { useAuth } from "@/client/hooks/useAuth";
+import { queryClient } from "@/client/helpers/http";
 import { useModal } from "@/client/hooks/useModal";
 
 export const Login = () => {
@@ -19,20 +19,18 @@ export const Login = () => {
 
   const { closeModal } = useModal();
 
-  const { setToken, setIsAdmin } = useAuth();
-
   const {
     mutate: handleSubmit,
     isPending,
     error: loginError,
   } = useMutation<void, Error, { password: string }>({
     mutationFn: async ({ password }) => {
-      const isValid = await api.login(password);
+      localStorage.setItem("auth-token", password);
+      const isValid = await api.login();
       if (!isValid) throw new Error("Invalid password");
-      setToken(password);
     },
-    onSuccess: () => {
-      setIsAdmin(true);
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["isAdmin"] });
       closeModal();
       toast.success("You are now logged in");
     },
