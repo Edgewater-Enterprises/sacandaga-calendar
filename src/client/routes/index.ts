@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Home } from "@/client/components/Home";
-import { eventsQuery, isAdminQuery } from "@/client/helpers/api";
-import { queryClient } from "@/client/helpers/http";
+import { eventsQuery, isAdminQuery, queryClient } from "@/client/helpers/api";
 
 export const Route = createFileRoute("/")({
   component: Home,

@@ -4,9 +4,8 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { Label } from "@/client/components/Label";
-import { api } from "@/client/helpers/api";
+import { api, queryClient } from "@/client/helpers/api";
 import { buttonSx, getFieldError, textFieldSx } from "@/client/helpers/form";
-import { queryClient } from "@/client/helpers/http";
 import { useModal } from "@/client/hooks/useModal";
 
 export const Login = () => {

@@ -4,8 +4,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import { ModalProvider } from "@/client/components/ModalProvider";
+import { queryClient } from "@/client/helpers/api";
 import { assertGetElementById, registerServiceWorker } from "@/client/helpers/browser";
-import { queryClient } from "@/client/helpers/http";
 import { routeTree } from "@/client/routes/routeTree.gen";
 
 window.addEventListener("load", () => {
