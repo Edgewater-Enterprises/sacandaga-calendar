@@ -1,6 +1,6 @@
 import { author, description, license, version } from "package.json";
 
-export const API_URL_DEV = "http://localhost:5000";
+export const API_URL_DEV = "http://localhost:5001";
 
 export const API_URL_PROD = "https://sacandaga-backend.fly.dev";
 
