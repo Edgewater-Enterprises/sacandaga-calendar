@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { Label } from "@/client/components/Label";
-import { api, queryClient } from "@/client/helpers/api";
+import { api } from "@/client/helpers/api";
 import { buttonSx, getFieldError, textFieldSx } from "@/client/helpers/form";
 import { useModal } from "@/client/hooks/useModal";
 
@@ -29,7 +29,7 @@ export const Login = () => {
       if (!isValid) throw new Error("Invalid password");
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["isAdmin"] });
+      await api.invalidateIsAdmin();
       closeModal();
       toast.success("You are now logged in");
     },

@@ -6,8 +6,6 @@ import { eventsSchema } from "@/shared/schemas";
 import type { TAddEvent, TEvent } from "@/shared/types";
 
 export const api = {
-  invalidateEvents: () => queryClient.invalidateQueries({ queryKey: ["events"] }),
-
   fetchAndParseEvents: async () => {
     try {
       const res = await httpClient.GET(`${Config.API_URL}/event`);
@@ -65,6 +63,10 @@ export const api = {
       throw new Error(ErrorMessage.DeleteEvent);
     }
   },
+
+  invalidateEvents: () => queryClient.invalidateQueries({ queryKey: ["events"] }),
+
+  invalidateIsAdmin: () => queryClient.invalidateQueries({ queryKey: ["isAdmin"] }),
 
   login: async () => {
     try {
