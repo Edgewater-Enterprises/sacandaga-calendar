@@ -18,11 +18,7 @@ export const Login = () => {
 
   const { closeModal } = useModal();
 
-  const {
-    mutate: handleSubmit,
-    isPending,
-    error: loginError,
-  } = useMutation<void, Error, { password: string }>({
+  const { mutate: handleSubmit, isPending } = useMutation<void, Error, { password: string }>({
     mutationFn: async ({ password }) => {
       localStorage.setItem("auth-token", password);
       const isValid = await api.login();
@@ -33,6 +29,7 @@ export const Login = () => {
       closeModal();
       toast.success("You are now logged in");
     },
+    onError: error => toast.error(error.message),
   });
 
   return (
@@ -54,7 +51,7 @@ export const Login = () => {
           }}
         >
           {field => {
-            const error = getFieldError(field) ?? loginError?.message;
+            const error = getFieldError(field);
 
             return (
               <div className="labelled-field">
