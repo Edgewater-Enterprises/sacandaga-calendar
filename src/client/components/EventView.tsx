@@ -15,7 +15,7 @@ export const EventView = (event: TEvent) => {
 
   return (
     <div className="modal-content">
-      <h1>{title}</h1>
+      <h1 style={{ textAlign: "center" }}>{title}</h1>
       <p>
         {displayDate(start)} - {displayDate(end)}
       </p>
