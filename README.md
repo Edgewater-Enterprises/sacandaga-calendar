@@ -9,7 +9,7 @@ Calendar app for coordinating stays at our family lake house.
 2. Clone this repository and install dependencies:
 
 ```bash
-git clone https://github.com/Sacandaga/sacandaga-calendar.git
+git clone https://github.com/Edgewater-Enterprises/sacandaga-calendar.git
 cd sacandaga-calendar
 bun install
 ```
